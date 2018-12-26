@@ -76,14 +76,14 @@
 
     </v-style>
     <h1>Presets</h1>
-    <ul class="inline">
-      <li><a href="#" @click="loadPreset('sharepic')">Normales SocialMedia-Sharepic</a></li>
-      <li><a href="#" @click="loadPreset('testimonial')">Testimonial</a></li>
-      <li><a href="#" @click="loadPreset('fb-event')">Facebook-Banner für Veranstaltung</a></li>
-      <li><a href="#" @click="loadPreset('insta-story')">Instagram-Story</a></li>
-      <li><a href="#" @click="loadPreset('insta-post')">Instagram-Beitrag</a></li>
-      <li><a href="#" @click="loadPreset('fb-page')">Facebook-Banner für Seite</a></li>
-      <li><a href="#" @click="loadPreset('twitter-header')">Twitter-Banner für Profil</a></li>
+    <ul class="inline presets">
+      <li><router-link :to="{ query: { preset: 'sharepic' } }">SocialMedia-Sharepic</router-link> </li>
+      <li><router-link :to="{ query: { preset: 'testimonial' } }">Testimonial</router-link> </li>
+      <li><router-link :to="{ query: { preset: 'fb-event' } }">Facebook-Banner für Veranstaltung</router-link> </li>
+      <li><router-link :to="{ query: { preset: 'insta-story' } }">Instagram-Story</router-link> </li>
+      <li><router-link :to="{ query: { preset: 'insta-post' } }">Instagram-Beitrag</router-link> </li>
+      <li><router-link :to="{ query: { preset: 'fb-page' } }">Facebook-Banner für Seite</router-link> </li>
+      <li><router-link :to="{ query: { preset: 'twitter-header' } }">Twitter-Banner für Profil</router-link> </li>
     </ul>
     <h1>Einstellungen</h1>
     <label for="width">Breite</label><input v-model="width" type="number" id="width">
@@ -310,8 +310,11 @@
       toDataURL(this.logo, (dataUrl) => {
         this.logoDataUrl = dataUrl;
       });
-      this.loadPreset('sharepic');
-
+      if(this.$route.query.preset) {
+        this.loadPreset(this.$route.query.preset);
+      } else {
+        this.loadPreset('sharepic');
+      }
     },
     methods: {
       loadPreset(preset) {
@@ -387,7 +390,12 @@
         toDataURL(this.logo, (dataUrl) => {
           this.logoDataUrl = dataUrl;
         });
-      }
+      },
+      '$route' (to) {
+        if(to.query.preset) {
+          this.loadPreset(to.query.preset);
+        }
+    }
     }
   }
 </script>
@@ -434,5 +442,15 @@
       }
     }
   }
+
+  a {
+    color: #2D9CDB;
+    text-decoration: none;
+
+    &:hover, &.router-link-active-exact {
+      color: #BED933;
+    }
+  }
+
 
 </style>
