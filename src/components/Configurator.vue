@@ -68,6 +68,7 @@
 
       #logo {
       position: absolute;
+      background-size: cover;
       right: 10px;
       bottom: 10px;
       background-repeat: no-repeat;
@@ -95,13 +96,14 @@
     <input type="range" id="saturation" v-model="backgroundOverlay" min="0" max="100">
     <input type="number" id="saturation2" v-model="backgroundOverlay">
     <br>
-    <label for="region">Logo</label><select id="region">
-    <option>Zürich</option>
-  </select>
+    <label for="region">Logo</label>
+    <select id="region" v-model="logo">
+      <option v-for="logo in logos" v-bind:value="logo.image">{{ logo.text }}</option>
+    </select>
     <label for="logosize">Logo-Grösse</label>
     <input type="number" id="logosize" v-model="logoSize"><br>
-    <label for="backgroundImage">Hintergrundbild</label><input type="url" id="backgroundImage"
-                                                               v-model="backgroundImage">
+    <label for="backgroundImage">Hintergrundbild</label>
+    <input type="url" id="backgroundImage" v-model="backgroundImage">
     <br>
     <label for="upload">oder lokale Datei:</label><input type="file" id="upload" @change="useLocalFile"><br>
     <!--
@@ -142,7 +144,6 @@
         <div id="logoBackground">
         </div>
         <div id="logo" :style="logoStyles"></div>
-
       </div>
     </div>
     <h2>Output</h2>
@@ -211,7 +212,15 @@
     {
       text: 'Zürich',
       value: 'ZH',
-      logo: require('./../assets/Logo_jglp_ZH.svg'),
+      image: require('./../assets/Logo_jglp_ZH.svg'),
+    }, {
+      text: 'Schweiz',
+      value: 'CH-DE',
+      image: require('./../assets/Logo_glp_CHde_WEB.png'),
+    }, {
+      text: 'Suisse',
+      value: 'CH-FR',
+      image: require('./../assets/Logo_glp_CHfr_WEB.png'),
     }
   ];
 
@@ -220,6 +229,7 @@
     name: "Configurator",
     data() {
       return {
+        logos: logos,
         dragging: false,
         logo: require('./../assets/Logo_jglp_ZH.svg'),
         logoDataUrl: '',
@@ -344,6 +354,11 @@
       backgroundImage: function () {
         toDataURL(this.backgroundImage, (dataUrl) => {
           this.backgroundImageDataUrl = dataUrl;
+        });
+      },
+      logo: function() {
+        toDataURL(this.logo, (dataUrl) => {
+          this.logoDataUrl = dataUrl;
         });
       }
     }
