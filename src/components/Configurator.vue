@@ -21,8 +21,7 @@
       }
 
       #outer * {
-      font-family: 'BrauerNeue';
-      text-transform: uppercase;
+      font-family: 'Oswald';
       }
 
 
@@ -48,7 +47,7 @@
       }
       #content div {
       transform: rotate(-10deg) skewX(-10deg);
-      padding: 3px;
+      padding-bottom: 3px;
       color: white;
       }
 
@@ -60,9 +59,10 @@
 
       #lower {
       background-color: #2D9CDB;
-      font-size: 1.2em;
+      font-size: 1.4em;
       padding-left: 0.3em !important;
       padding-right: 0.3em !important;
+      text-transform: uppercase;
       }
 
       #logoBackground {
@@ -146,8 +146,8 @@
              @mouseout="stopDrag"
              @mousemove="shiftElement"
              :style="contentStyles">
-          <div id="upper" contenteditable>This is the one</div>
-          <div id="lower" contenteditable>And this is another</div>
+          <div id="upper" contenteditable>für eine lebenswerte Stadt</div>
+          <div id="lower" contenteditable>Verkehrswende jetzt!</div>
         </div>
         <div id="logoBackground">
         </div>
@@ -189,7 +189,7 @@
       width: 800,
       height: 600,
       logoSize: 177,
-      xPosition: -142,
+      xPosition: -80,
       yPosition: -124,
       fontSize: 40
     },
@@ -197,7 +197,7 @@
       width: 600,
       height: 800,
       logoSize: 165,
-      xPosition: -52,
+      xPosition: -12,
       yPosition: -211,
       fontSize: 40
     },
@@ -206,14 +206,14 @@
       height: 628,
       logoSize: 238,
       xPosition: -52,
-      yPosition: -169,
+      yPosition: -129,
       fontSize: 60
     },
     'insta-story': {
       width: 600,
       height: 800,
       logoSize: 166,
-      xPosition: -52,
+      xPosition: -2,
       yPosition: -211,
       fontSize: 40
     },
@@ -237,8 +237,8 @@
       width: 1500,
       height: 500,
       logoSize: 275,
-      xPosition: -52,
-      yPosition: -100,
+      xPosition: -74,
+      yPosition: -45,
       fontSize: 60
     }
   };
