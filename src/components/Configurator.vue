@@ -17,12 +17,14 @@
 
             #outer {
                 position:relative;
+                background-size: cover;
                 background-color: blue;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 background-position: center;
+                background-repeat: no-repeat;
                 overflow:hidden;
             }
             #content {
@@ -71,35 +73,46 @@
 
         </v-style>
         <h1>Presets</h1>
-        <ul>
+        <ul class="inline">
             <li><a href="#">Normales SocialMedia-Sharepic</a></li>
-            <li><a href="#">Facebook-Banner für Seite</a></li>
+            <li><a href="#">Testimonial</a></li>
             <li><a href="#">Facebook-Banner für Veranstaltung</a></li>
             <li><a href="#">Instagram-Story</a></li>
             <li><a href="#">Instagram-Beitrag</a></li>
+            <li><a href="#">Facebook-Banner für Seite</a></li>
         </ul>
+        <h1>Einstellungen</h1>
         <label for="width">Breite</label><input v-model="width" type="number" id="width">
         <label for="height">Höhe</label><input v-model="height" type="number" id="height">
         <label for="x">X-Position</label><input v-model="xPosition" type="number" id="x">
         <label for="y">Y-Position</label><input v-model="yPosition" type="number" id="y">
         <br>
         <label for="fontSize">Schriftgrösse</label><input type="number" id="fontSize" v-model="fontSize">
-        <label for="saturation">Bild-Sättigung</label><input type="range" id="saturation" value="100">
+        <label for="saturation">Bild-Sättigung</label>
+            <input type="range" id="saturation" v-model="backgroundOverlay" min="0" max="100">
+            <input type="number" id="saturation2" v-model="backgroundOverlay">
         <br>
         <label for="region">Logo</label><select id="region"><option>Zürich</option></select><br>
         <label for="backgroundImage">Hintergrundbild</label><input type="url" id="backgroundImage" v-model="backgroundImage">
-        oder<br>
-        <label for="upload">Upload</label><input type="file" id="upload" @change="">
-        <ul>
-            <li><a href="https://www.pexels.com/de-de/royalty-free-images/">Pexels</a></li>
-            <li><a href="https://pixabay.com/">Pixabay</a></li>
-            <li><a href="https://unsplash.com/">Unsplash</a></li>
-            <li><a href="https://gratisography.com/">Gratisopraphy</a></li>
-        </ul>
+        <br>
+        <label for="upload">oder lokale Datei:</label><input type="file" id="upload" @change="useLocalFile"><br>
+        <!--
+        <label for="bgwidth">HG Breite</label><input v-model="bg.width" type="number" id="bgwidth">
+        <label for="bgheight">HG Höhe</label><input v-model="bg.height" type="number" id="bgheight">
+        <label for="bgx">HG X-Position</label><input v-model="bg.xPosition" type="number" id="bgx">
+        <label for="bgy">HG Y-Position</label><input v-model="bg.yPosition" type="number" id="bgy">
+        <ul class="inline">
+            <li><a target="_blank" href="https://www.pexels.com/de-de/royalty-free-images/">Pexels</a></li>
+            <li><a target="_blank" href="https://pixabay.com/">Pixabay</a></li>
+            <li><a target="_blank" href="https://unsplash.com/">Unsplash</a></li>
+            <li><a target="_blank" href="https://gratisography.com/">Gratisopraphy</a></li>
+        </ul>-->
         <button id="button" @click="generate">
             Erstellen
         </button>
         <h1>Vorschau</h1>
+        Du kannst: <br> Durch Anklicken den Text editieren, den Textblock verschieben
+        <br>
         <div id="container">
             <div id="outer" ref="outer"
                  :style="outerStyles">
@@ -120,6 +133,7 @@
             </div>
         </div>
         <h2>Output</h2>
+        <p><em>Rechtslick->Bild kopieren</em> oder <em>Rechtslick->Bild speichern unter</em> um das Bild zu verwenden.</p>
         <div id="output">
             <p>Klicke auf "Erstellen" um das Bild zu generieren.</p>
         </div>
@@ -135,6 +149,13 @@
                 callback(reader.result);
             };
             reader.readAsDataURL(xhr.response);
+        };
+        xhr.onerror = function(error) {
+            alert("Das Bild konnte wegen eines Fehlers nicht geladen werde. Probiere ein anderes." +
+                "\n\n" +
+                "Mögliche Fehler: \n" +
+                    "Du bist offline. Geh online!\n" +
+                "Cross-Origin-Header ist gesetzt: Da kannst du nichts machen, such dir ein anderes Bild.");
         };
         xhr.open('GET', url);
         xhr.responseType = 'blob';
@@ -155,8 +176,13 @@
                 xPosition: -40,
                 yPosition: -100,
                 fontSize: 40,
-                outerStyle: {
-                    backgroundImage: '' ,
+                backgroundOverlay: 10.0,
+                backgroundImageDataUrl: '',
+                bg: {
+                    x: '',
+                    y: '',
+                    width: '',
+                    height: '',
                 }
             }
         },
@@ -166,7 +192,10 @@
                     width: this.width + 'px',
                     height: this.height + 'px',
                     fontSize: this.fontSize + 'px',
-                    backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(' + this.outerStyle.backgroundImage + ')',
+                    backgroundImage:
+                        'linear-gradient(to bottom, rgba(255, 255, 255, '+ this.backgroundOverlay / 100 +')' +
+                        ',rgba(255, 255, 255, '+ this.backgroundOverlay / 100 +'))' +
+                        ',url(' + this.backgroundImageDataUrl + ')',
                 }
             },
             contentStyles() {
@@ -183,7 +212,7 @@
         },
         mounted(){
             toDataURL(this.backgroundImage, (dataUrl) => {
-                this.outerStyle.backgroundImage = dataUrl;
+                this.backgroundImageDataUrl = dataUrl;
             } );
             toDataURL(this.logo, (dataUrl) => {
                 this.logoDataUrl = dataUrl;
@@ -201,6 +230,18 @@
                 if(this.dragging) {
                     this.xPosition += event.movementX;
                     this.yPosition += event.movementY;
+                }
+            },
+            useLocalFile(event) {
+                const reader  = new FileReader();
+
+                reader.addEventListener("load", () => {
+                    this.backgroundImageDataUrl= reader.result;
+                    console.log(this.backgroundImageDataUrl);
+                }, false);
+                console.log(this);
+                if (event.target.files[0]) {
+                    reader.readAsDataURL(event.target.files[0]);
                 }
             },
             generate() {
@@ -236,6 +277,13 @@
                     targetImg.src = canvas.toDataURL()
                 }
             }
+        },
+        watch: {
+            backgroundImage: function() {
+                toDataURL(this.backgroundImage, (dataUrl) => {
+                    this.backgroundImageDataUrl = dataUrl;
+                });
+            }
         }
     }
 </script>
@@ -264,7 +312,7 @@
         width: 400px;
     }
 
-    ul {
+    ul.inline {
         list-style: none;
 
         li {
