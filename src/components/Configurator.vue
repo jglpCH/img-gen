@@ -180,31 +180,58 @@
     'sharepic': {
       width: 800,
       height: 600,
-      logoSize: 177
+      logoSize: 177,
+      xPosition: -142,
+      yPosition: -124,
+      fontSize: 40
     },
     'testimonial': {
       width: 600,
-      height: 800
+      height: 800,
+      logoSize: 165,
+      xPosition: -52,
+      yPosition: -211,
+      fontSize: 40
     },
     'fb-event': {
       width: 1200,
       height: 628,
+      logoSize: 238,
+      xPosition: -52,
+      yPosition: -169,
+      fontSize: 60
     },
     'insta-story': {
       width: 600,
       height: 800,
+      logoSize: 166,
+      xPosition: -52,
+      yPosition: -211,
+      fontSize: 40
     },
     'insta-post': {
       width: 800,
-      height: 800
+      height: 800,
+      logoSize: 206,
+      xPosition: -52,
+      yPosition: -211,
+      fontSize: 40
     },
     'fb-page': {
       width: 820,
       height: 462,
+      logoSize: 159,
+      xPosition: -39,
+      yPosition: -99,
+      fontSize: 40
     },
     'twitter-header': {
       width: 1500,
       height: 500,
+      logoSize: 275,
+      xPosition: -52,
+      yPosition: -100,
+      fontSize: 60
     }
   };
 
@@ -369,6 +396,13 @@
   #container {
     margin: auto;
     display: inline-block;
+  }
+
+  #content {
+    cursor: move;
+    &:hover {
+      background-color: rgba(#fff, 0.8);
+    }
   }
 
   input, select {
