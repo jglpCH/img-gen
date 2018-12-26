@@ -100,13 +100,14 @@
     <label for="y">Y-Position</label><input v-model="yPosition" type="number" id="y">
     <br>
     <label for="fontSize">Schriftgrösse</label><input type="number" id="fontSize" v-model="fontSize">
-    <label for="saturation">Bild-Sättigung</label>
+    <label for="saturation">Bild-Overlay</label>
     <input type="range" id="saturation" v-model="backgroundOverlay" min="0" max="100">
+    <label for="saturation2"></label>
     <input type="number" id="saturation2" v-model="backgroundOverlay">
     <br>
     <label for="region">Logo</label>
     <select id="region" v-model="logo">
-      <option v-for="logo in logos" v-bind:value="logo.image">{{ logo.text }}</option>
+      <option v-for="logo in logos" v-bind:value="logo.image" v-bind:key="logo.value">{{ logo.text }}</option>
     </select>
     <label for="logosize">Logo-Grösse</label>
     <input type="number" id="logosize" v-model="logoSize"><br>
@@ -172,7 +173,7 @@
       };
       reader.readAsDataURL(xhr.response);
     };
-    xhr.onerror = function (error) {
+    xhr.onerror = function () {
       alert("Das Bild konnte wegen eines Fehlers nicht geladen werde. Probiere ein anderes." +
         "\n\n" +
         "Mögliche Fehler: \n" +
@@ -372,7 +373,10 @@
         const style = document.getElementById('style').innerHTML;
         tempImg.addEventListener('load', onTempImageLoad);
         tempImg.src = 'data:image/svg+xml,' +
-          encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + this.width + '" height="' + this.height + '"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml"><style>' + style + '</style>' + htmlm + '</div></foreignObject></svg>')
+          encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'
+            + this.width + '" height="' + this.height
+            + '"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml"><style>'
+            + style + '</style>' + htmlm + '</div></foreignObject></svg>');
 
         const targetImg = document.createElement('img');
 
