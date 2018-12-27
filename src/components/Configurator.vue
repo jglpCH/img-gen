@@ -49,6 +49,8 @@
       transform: rotate(-10deg) skewX(-10deg);
       padding-bottom: 3px;
       color: white;
+      white-space: nowrap;
+      text-transform: uppercase;
       }
 
       #upper {
@@ -62,13 +64,12 @@
       font-size: 1.4em;
       padding-left: 0.3em !important;
       padding-right: 0.3em !important;
-      text-transform: uppercase;
       }
 
       #logoBackground {
       position: absolute;
       background-color: white;
-      bottom: -94%;
+      bottom: -93%;
       width: 200%;
       height: 100%;
       transform: rotate(-10deg)
@@ -147,8 +148,8 @@
              @mouseout="stopDrag"
              @mousemove="shiftElement"
              :style="contentStyles">
-          <div id="upper" lang="de-CH" contenteditable>für eine lebenswerte Stadt</div>
-          <div id="lower" lang="de-CH" contenteditable>Verkehrswende jetzt!</div>
+          <div id="upper" lang="de-CH" contenteditable @keydown.enter.prevent="">für eine lebenswerte Stadt</div>
+          <div id="lower" lang="de-CH" contenteditable @keydown.enter.prevent="">Verkehrswende jetzt!</div>
         </div>
         <div id="logoBackground">
         </div>
@@ -248,15 +249,55 @@
     {
       text: 'Zürich',
       value: 'ZH',
-      image: require('./../assets/Logo_jglp_ZH.svg'),
+      image: require('./../assets/SVG/Zürich.svg'),
     }, {
       text: 'Schweiz',
       value: 'CH-DE',
-      image: require('./../assets/Logo_glp_CHde_WEB.png'),
+      image: require('./../assets/SVG/Schweiz.svg'),
     }, {
       text: 'Suisse',
       value: 'CH-FR',
-      image: require('./../assets/Logo_glp_CHfr_WEB.png'),
+      image: require('./../assets/SVG/Suisse.svg'),
+    }, {
+      text: 'Bern',
+      value: 'BE',
+      image: require('./../assets/SVG/Bern.svg'),
+    }, {
+      text: 'Aargau',
+      value: 'AG',
+      image: require('./../assets/SVG/Aargau.svg'),
+    }, {
+      text: 'Graubünden',
+      value: 'GR',
+      image: require('./../assets/SVG/Graubünden.svg'),
+    }, {
+      text: 'Luzern',
+      value: 'LU',
+      image: require('./../assets/SVG/Luzern.svg'),
+    }, {
+      text: 'Glarus',
+      value: 'GL',
+      image: require('./../assets/SVG/Glarus.svg'),
+    }, {
+      text: 'St. Gallen',
+      value: 'SG',
+      image: require('./../assets/SVG/STGallen.svg'),
+    },{
+      text: 'Thurgau',
+      value: 'TG',
+      image: require('./../assets/SVG/Thurgau.svg'),
+    },{
+      text: 'Zug',
+      value: 'ZG',
+      image: require('./../assets/SVG/Zug.svg'),
+    },{
+      text: 'Solothurn',
+      value: 'SO',
+      image: require('./../assets/SVG/Solothurn.svg'),
+    },{
+      text: 'Schwyz',
+      value: 'SZ',
+      image: require('./../assets/SVG/Schwyz.svg'),
     }
   ];
 
@@ -267,7 +308,7 @@
       return {
         logos: logos,
         dragging: false,
-        logo: require('./../assets/Logo_jglp_ZH.svg'),
+        logo: require('./../assets/SVG/Zürich.svg'),
         logoDataUrl: '',
         backgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Limmat-Quaibr%C3%BCcke.jpg/1280px-Limmat-Quaibr%C3%BCcke.jpg',
         height: 600,
