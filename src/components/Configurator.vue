@@ -86,6 +86,7 @@
     </v-style>
     <h1>Anleitung</h1>
     <ol>
+      <li><strong>Aktuell funktioniert der Generator nur im <a href="https://www.google.com/chrome/">Google Chrome!</a></strong></li>
       <li>Preset auswählen</li>
       <li>Bild, Logo & Text anpassen</li>
       <li>Auf "Erstellen" klicken</li>
