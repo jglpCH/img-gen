@@ -28,7 +28,7 @@
       #outer {
       position:relative;
       background-size: cover;
-      background-color: blue;
+      background-color: #f0f0f0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -84,6 +84,13 @@
       }
 
     </v-style>
+    <h1>Anleitung</h1>
+    <ol>
+      <li>Preset auswählen</li>
+      <li>Bild, Logo & Text anpassen</li>
+      <li>Auf "Erstellen" klicken</li>
+      <li>Weiter unten erstelltes Bild kopieren oder speichern</li>
+    </ol>
     <h1>Presets</h1>
     <ul class="inline presets">
       <li><router-link :to="{ query: { preset: 'sharepic' } }">SocialMedia-Sharepic</router-link> </li>
@@ -95,33 +102,10 @@
       <li><router-link :to="{ query: { preset: 'twitter-header' } }">Twitter-Banner für Profil</router-link> </li>
     </ul>
     <h1>Einstellungen</h1>
-    <label for="width">Breite</label><input v-model="width" type="number" id="width">
-    <label for="height">Höhe</label><input v-model="height" type="number" id="height">
-    <label for="x">X-Position</label><input v-model="xPosition" type="number" id="x">
-    <label for="y">Y-Position</label><input v-model="yPosition" type="number" id="y">
-    <br>
-    <label for="fontSize">Schriftgrösse</label><input type="number" id="fontSize" v-model="fontSize">
-    <label for="saturation">Bild-Overlay</label>
-    <input type="range" id="saturation" v-model="backgroundOverlay" min="0" max="100">
-    <label for="saturation2"></label>
-    <input type="number" id="saturation2" v-model="backgroundOverlay">
-    <br>
-    <label for="region">Logo</label>
-    <select id="region" v-model="logo">
-      <option v-for="logo in logos" v-bind:value="logo.image" v-bind:key="logo.value">{{ logo.text }}</option>
-    </select>
-    <label for="logosize">Logo-Grösse</label>
-    <input type="number" id="logosize" v-model="logoSize"><br>
     <label for="backgroundImage">Hintergrundbild</label>
     <input type="url" id="backgroundImage" v-model="backgroundImage">
     <br>
     <label for="upload">oder lokale Datei:</label><input type="file" id="upload" @change="useLocalFile"><br>
-    <!--
-    <label for="bgwidth">HG Breite</label><input v-model="bg.width" type="number" id="bgwidth">
-    <label for="bgheight">HG Höhe</label><input v-model="bg.height" type="number" id="bgheight">
-    <label for="bgx">HG X-Position</label><input v-model="bg.xPosition" type="number" id="bgx">
-    <label for="bgy">HG Y-Position</label><input v-model="bg.yPosition" type="number" id="bgy">
-    -->
     Quellen für lizenzfreie Bilder:
     <ul class="inline external">
       <li><a target="_blank" href="https://www.pexels.com/de-de/royalty-free-images/">Pexels</a></li>
@@ -132,11 +116,35 @@
              href="https://www.google.ch/imghp?tbs=sur:fm&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj4lbuW8b3fAhVLtYsKHXDaCbkQ_AUIDigB&biw=2048&bih=1011">Google
         Lizenfrei</a></li>
     </ul>
+    <label for="region">Logo</label>
+    <select id="region" v-model="logo">
+      <option v-for="logo in logos" v-bind:value="logo.image" v-bind:key="logo.value">{{ logo.text }}</option>
+    </select>
+    <label for="logosize">Logo-Grösse</label>
+    <input type="number" id="logosize" v-model="logoSize"><br>
+
+    <label for="fontSize">Schriftgrösse</label><input type="number" id="fontSize" v-model="fontSize">
+    <label for="saturation">Bild-Overlay</label>
+    <input type="range" id="saturation" v-model="backgroundOverlay" min="0" max="100">
+    <label for="saturation2"></label>
+    <input type="number" id="saturation2" v-model="backgroundOverlay">
+    <br>
+    <!--
+    <label for="bgwidth">HG Breite</label><input v-model="bg.width" type="number" id="bgwidth">
+    <label for="bgheight">HG Höhe</label><input v-model="bg.height" type="number" id="bgheight">
+    <label for="bgx">HG X-Position</label><input v-model="bg.xPosition" type="number" id="bgx">
+    <label for="bgy">HG Y-Position</label><input v-model="bg.yPosition" type="number" id="bgy">
+    -->
+    <label for="width">Breite</label><input v-model="width" type="number" id="width">
+    <label for="height">Höhe</label><input v-model="height" type="number" id="height">
+    <label for="x">X-Position</label><input v-model="xPosition" type="number" id="x">
+    <label for="y">Y-Position</label><input v-model="yPosition" type="number" id="y">
     <button id="button" @click="generate">
       Erstellen
     </button>
     <h1>Vorschau</h1>
-    Du kannst: <br> Durch Anklicken den Text editieren, den Textblock verschieben
+    Du kannst: <br> <em>Durch anklicken den Text editieren, durch ziehen den Textblock verschieben</em>
+    <br>
     <br>
     <div id="container">
       <div id="outer" ref="outer"
@@ -247,10 +255,6 @@
 
   const logos = [
     {
-      text: 'Zürich',
-      value: 'ZH',
-      image: require('./../assets/SVG/Zürich.svg'),
-    }, {
       text: 'Schweiz',
       value: 'CH-DE',
       image: require('./../assets/SVG/Schweiz.svg'),
@@ -259,6 +263,10 @@
       value: 'CH-FR',
       image: require('./../assets/SVG/Suisse.svg'),
     }, {
+      text: 'Zürich',
+      value: 'ZH',
+      image: require('./../assets/SVG/Zürich.svg'),
+    },{
       text: 'Bern',
       value: 'BE',
       image: require('./../assets/SVG/Bern.svg'),
@@ -308,7 +316,7 @@
       return {
         logos: logos,
         dragging: false,
-        logo: require('./../assets/SVG/Zürich.svg'),
+        logo: undefined,
         logoDataUrl: '',
         backgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Limmat-Quaibr%C3%BCcke.jpg/1280px-Limmat-Quaibr%C3%BCcke.jpg',
         height: 600,
@@ -316,6 +324,7 @@
         xPosition: -40,
         yPosition: -100,
         fontSize: 40,
+        logoImageRatio: '',
         backgroundOverlay: 10.0,
         backgroundImageDataUrl: '',
         logoSize: 199,
@@ -348,17 +357,15 @@
       logoStyles() {
         return {
           width: this.logoSize + 'px',
-          height: this.logoSize * 0.4572 + 'px',
+          height: this.logoSize * this.logoImageRatio + 'px',
           backgroundImage: 'url(\'' + this.logoDataUrl + '\')',
         }
       }
     },
     mounted() {
+      this.logo = require('./../assets/SVG/Zürich.svg');
       toDataURL(this.backgroundImage, (dataUrl) => {
         this.backgroundImageDataUrl = dataUrl;
-      });
-      toDataURL(this.logo, (dataUrl) => {
-        this.logoDataUrl = dataUrl;
       });
       if(this.$route.query.preset) {
         this.loadPreset(this.$route.query.preset);
@@ -368,7 +375,6 @@
     },
     methods: {
       loadPreset(preset) {
-        console.log(presets[preset]);
         Object.assign(this, presets[preset]);
       },
       startDrag() {
@@ -388,9 +394,7 @@
 
         reader.addEventListener("load", () => {
           this.backgroundImageDataUrl = reader.result;
-          console.log(this.backgroundImageDataUrl);
         }, false);
-        console.log(this);
         if (event.target.files[0]) {
           reader.readAsDataURL(event.target.files[0]);
         }
@@ -442,6 +446,11 @@
       logo: function() {
         toDataURL(this.logo, (dataUrl) => {
           this.logoDataUrl = dataUrl;
+          const tempImage = new Image();
+          tempImage.onload = () => {
+            this.logoImageRatio = tempImage.height / tempImage.width;
+          };
+          tempImage.src = dataUrl
         });
       },
       '$route' (to) {
@@ -454,6 +463,13 @@
 </script>
 
 <style scoped lang="scss">
+
+
+  ol {
+    margin: auto;
+    width: 300px;
+    text-align: left;
+  }
   #container {
     margin: auto;
     display: inline-block;
