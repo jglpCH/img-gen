@@ -91,6 +91,9 @@
       <li>Bild, Logo & Text anpassen</li>
       <li>Auf "Erstellen" klicken</li>
       <li>Weiter unten erstelltes Bild kopieren oder speichern</li>
+      <li>Fehler und Verbesserungsvorschläge können hier hinzugefügt werden:<br>
+        <a target="_blank" href="https://docs.google.com/spreadsheets/d/12gYzp4hnc4tvvLzGqMi59lJMe90oHHPct2l-x7ZAXro/edit">Feature-Liste</a></li>
+      <li>Bei sonstigen Fragen und Bemerkungen: <br>@frickman (<a target="_blank" href="https://grunliberale.slack.com">Slack</a>)</li>
     </ol>
     <h1>Presets</h1>
     <ul class="inline presets">
@@ -307,6 +310,18 @@
       text: 'Schwyz',
       value: 'SZ',
       image: require('./../assets/SVG/Schwyz.svg'),
+    },{
+      text: 'Uni Bern',
+      value: 'UNIB',
+      image: require('./../assets/SVG/UniBärn.svg'),
+    },{
+      text: 'Beide Basel',
+      value: 'BB',
+      image: require('./../assets/SVG/BeideBasel.svg'),
+    },{
+      text: 'Schaffhausen',
+      value: 'SH',
+      image: require('./../assets/SVG/Schaffhausen.svg'),
     }
   ];
 
