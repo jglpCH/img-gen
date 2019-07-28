@@ -271,6 +271,10 @@
       value: 'ZH',
       image: require('./../assets/SVG/Zürich.svg'),
     },{
+      text: 'Winterthur',
+      value: 'Winti',
+      image: require('./../assets/SVG/Winti.svg'),
+    },{
       text: 'Bern',
       value: 'BE',
       image: require('./../assets/SVG/Bern.svg'),
@@ -322,6 +326,22 @@
       text: 'Schaffhausen',
       value: 'SH',
       image: require('./../assets/SVG/Schaffhausen.svg'),
+    },{
+      text: 'Vaud',
+      value: 'VD',
+      image: require('./../assets/SVG/Vaud.svg'),
+    },{
+      text: 'Genève',
+      value: 'SH',
+      image: require('./../assets/SVG/Geneve.svg'),
+    },{
+      text: 'Fribourg',
+      value: 'FR',
+      image: require('./../assets/SVG/Fribourg.svg'),
+    },{
+      text: 'Neuchâtel',
+      value: 'FR',
+      image: require('./../assets/SVG/Neuchatel.svg'),
     }
   ];
 
