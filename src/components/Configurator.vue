@@ -342,6 +342,10 @@
       text: 'Neuchâtel',
       value: 'FR',
       image: require('./../assets/SVG/Neuchatel.svg'),
+    },{
+      text: 'Nid- und Obwalden',
+      value: 'NOW',
+      image: require('./../assets/SVG/NidObWalden.svg'),
     }
   ];
 
