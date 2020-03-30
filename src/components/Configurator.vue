@@ -40,6 +40,7 @@
       background-repeat: no-repeat;
       overflow:hidden;
       }
+
       #content {
       position: relative;
       top:-100px;
@@ -47,13 +48,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-transform: uppercase;
       }
+
       #content div {
       transform: rotate(-10deg) skewX(-10deg);
       padding-bottom: 3px;
       color: white;
       white-space: nowrap;
-      text-transform: uppercase;
       }
 
       #upper {
@@ -171,7 +173,7 @@
                   Lizenfrei</a></li>
               </ul>
 
-
+              <h4 class="card-title mt-4">Logo Einstellungen</h4>
               <div class="row">
                 <div class="col-md-4">
                   <label for="region">Logo</label>
@@ -183,9 +185,6 @@
                 </div>
                 <div class="col-md-4"><label for="logosize">Logo-Grösse</label>
                   <input class="form-control" type="number" id="logosize" v-model="logoSize">
-                </div>
-                <div class="col-md-4"><label for="fontSize">Schriftgrösse</label><input
-                  class="form-control" type="number" id="fontSize" v-model="fontSize">
                 </div>
               </div>
 
@@ -218,6 +217,23 @@
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <h4 class="card-title mt-4">Schrift Einstellungen</h4>
+              <div class="row">
+                  <div class="col-md-4"><label for="fontSize">Schriftgrösse</label><input
+                          class="form-control" type="number" id="fontSize" v-model="fontSize">
+                  </div>
+
+                  <div class="col-md-4">
+                      <label for="fontUpperCase">Alles Gross</label>
+                      <select id="fontUpperCase" v-model="upperCase" class="form-control">
+                          <option value="uppercase">Alles gross</option>
+                          <option value="none" >Manuell</option>
+                          <option value="lowercase">Alles klein</option>
+                          <option value="capitalize">Erste Buchstabe vom Wort gross</option>
+                      </select>
+                  </div>
               </div>
 
 
@@ -478,6 +494,7 @@
         backgroundOverlay: 10.0,
         backgroundImageDataUrl: '',
         logoSize: 199,
+        upperCase: 'uppercase',
         bg: {
           x: '',
           y: '',
@@ -513,6 +530,7 @@
         return {
           top: this.yPosition + 'px',
           left: this.xPosition + 'px',
+          textTransform: this.upperCase,
         }
       },
       logoStyles() {
