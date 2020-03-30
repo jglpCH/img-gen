@@ -46,6 +46,7 @@
       left: -40px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       }
       #content div {
       transform: rotate(-10deg) skewX(-10deg);
@@ -85,11 +86,7 @@
       background-repeat: no-repeat;
       }
 
-
-
     </v-style>
-
-
     <div class="container-fluid mt-3">
       <div class="row">
         <div class="col-md-5">
