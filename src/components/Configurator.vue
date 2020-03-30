@@ -88,8 +88,18 @@
 
     </v-style>
     <div class="container-fluid mt-3">
+      <div class="alert alert-info">Aktuell funktioniert der Generator nur im <a
+        href="https://www.google.com/chrome/">Google Chrome!</a> <br>
+
+        Fehler und Verbesserungsvorschläge können hier hinzugefügt werden:
+        <a target="_blank"
+           href="https://docs.google.com/spreadsheets/d/12gYzp4hnc4tvvLzGqMi59lJMe90oHHPct2l-x7ZAXro/edit">Feature-Liste</a>
+        <br>
+        Bei sonstigen Fragen und Bemerkungen: @frickman (<a target="_blank"
+                                                            href="https://grunliberale.slack.com">Slack</a>)
+      </div>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-12">
 
 
           <div class="card">
@@ -227,23 +237,13 @@
 
 
         </div>
-        <div class="col-md-7">
-          <div class="alert alert-info">Aktuell funktioniert der Generator nur im <a
-            href="https://www.google.com/chrome/">Google Chrome!</a> <br>
+        <div class="col-md-12 mt-2">
 
-            Fehler und Verbesserungsvorschläge können hier hinzugefügt werden:
-            <a target="_blank"
-               href="https://docs.google.com/spreadsheets/d/12gYzp4hnc4tvvLzGqMi59lJMe90oHHPct2l-x7ZAXro/edit">Feature-Liste</a>
-            <br>
-            Bei sonstigen Fragen und Bemerkungen: @frickman (<a target="_blank"
-                                                                href="https://grunliberale.slack.com">Slack</a>)
-          </div>
           <h2>Vorschau</h2>
           Du kannst: <em>Durch anklicken den Text editieren, durch ziehen den Textblock verschieben</em>
           <br>
-          <br>
 
-          <div class="scale-relative" :style="scaleRelative">
+          <div class="scale-relative mt-2" :style="scaleRelative">
             <div class="scale" :style="imageScale">
               <div id="container">
                 <div id="outer" ref="outer"
@@ -270,10 +270,10 @@
               </div>
             </div>
           </div>
-          <h2>Output</h2>
+          <h2 class="mt-4">Output</h2>
           <p><em>Rechtslick->Bild kopieren</em> oder <em>Rechtslick->Bild speichern unter</em> um das Bild zu
             verwenden.</p>
-          <div id="output">
+          <div id="output" class="mb-4">
             <p>Klicke auf "Erstellen" um das Bild zu generieren.</p>
           </div>
 
@@ -592,6 +592,9 @@
         document.getElementById('output').innerHTML = '';
         document.getElementById('output').appendChild(targetImg);
 
+        window.scrollTo(0, document.getElementById('output').offsetTop+document.getElementById('output').offsetHeight);
+
+
         function onTempImageLoad(e) {
           ctx.drawImage(e.target, 0, 0);
           targetImg.src = canvas.toDataURL();
@@ -703,7 +706,6 @@
 
   .scale {
     transform: scale(0.4) translate(-75%, -80%);
-    position:absolute;
     top:0;
     left:0;
   }
