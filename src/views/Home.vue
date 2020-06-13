@@ -11,7 +11,7 @@ import Configurator from '@/components/Configurator.vue'
 export default {
   name: 'home',
   components: {
-    Configurator
+    Configurator,
   }
 }
 </script>

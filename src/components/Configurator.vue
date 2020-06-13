@@ -52,7 +52,7 @@
       }
 
       #content div {
-      transform: rotate(-10deg) skewX(-10deg);
+      <!-- transform: rotate(-10deg) skewX(-10deg); -->
       padding-bottom: 3px;
       color: white;
       white-space: nowrap;
@@ -236,8 +236,43 @@
                   </div>
               </div>
 
+              <h4 class="card-title mt-4">Balken Einstellungen</h4>
+                  <button class="btn-default" @click="addNewBar">Balken hinzufügen</button>
+                  <button class="btn-default" @click="deleteOneBar">Balken entfernen</button>
+                  <div class="row mt-4">
+                    <div class="col-md-12">
+                      <div  v-for="(bar, index) in bars"
+                            v-bind:item="bar"
+                            v-bind:index="index"
+                            v-bind:key="bar.id">
+                              <div class="bg-light mr-4 mb-4 pb-4 border row">
+                                <div class="col-md-4">
+                                  <label for="xPosition">X-Position</label>
+                                  <input class="form-control" type="number" id="xPosition" v-model="bar.x">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="yPosition">Y-Position</label>
+                                  <input class="form-control" type="number" id="yPosition" v-model="bar.y">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="fontSize">Schriftgrösse (in <i>em</i>)</label>
+                                  <input class="form-control" type="number" step="0.1" id="fontSize" v-model="bar.fontSize">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="rotation">Winkel</label>
+                                  <input class="form-control" type="number" id="rotation" v-model="bar.rotation">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="color">Farbe</label>
+                                  <Sketch v-model="bar.colors"></Sketch>
+                                </div>
+                              </div>
+                            <!-- TODO: hier noch die Elemente fertig machen -->
+                      </div>
+                    </div>
+                  </div>
 
-              <!--
+<!--               
               <label for="bgwidth">HG Breite</label><input v-model="bg.width" type="number" id="bgwidth">
               <label for="bgheight">HG Höhe</label><input v-model="bg.height" type="number" id="bgheight">
               <label for="bgx">HG X-Position</label><input v-model="bg.xPosition" type="number" id="bgx">
@@ -264,18 +299,20 @@
               <div id="container">
                 <div id="outer" ref="outer"
                      :style="outerStyles">
+                     <!-- TODO: Hier weiter fahren -->
                   <div id="content"
                        ref="content"
                        @mousedown="startDrag"
                        @mouseup="stopDrag"
                        @mouseout="stopDrag"
-                       @mousemove="shiftElement"
-                       :style="contentStyles">
-                    <div id="upper" lang="de-CH" contenteditable @keydown.enter.prevent="">für eine
+                       @mousemove="shiftElement" 
+                       v-for="(bar, index) in bars"
+                      v-bind:item="bar"
+                      v-bind:index="index"
+                      v-bind:key="bar.id"
+                      :style="contentStyles(bar)">
+                    <div id="upper" lang="de-CH" contenteditable @keydown.enter.prevent="" :style="barStyle(bar)">für eine
                       lebenswerte Stadt
-                    </div>
-                    <div id="lower" lang="de-CH" contenteditable @keydown.enter.prevent="">Verkehrswende
-                      jetzt!
                     </div>
                   </div>
                   <div id="logoBackground">
@@ -303,6 +340,8 @@
 </template>
 
 <script>
+import { Sketch } from 'vue-color'
+
   function toDataURL(url, callback) {
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -323,6 +362,29 @@
     xhr.responseType = 'blob';
     xhr.send();
   }
+
+  let defaultProps = {
+  hex: '#2D9CDB',
+  hsl: {
+    h: 201.7,
+    s: 70.7,
+    l: 51.8,
+    a: 1
+  },
+  hsv: {
+    h: 202,
+    s: 79,
+    v: 89,
+    a: 1
+  },
+  rgba: {
+    r: 45,
+    g: 156,
+    b: 219,
+    a: 1
+  },
+  a: 0.9
+}
 
   const presets = {
     'sharepic': {
@@ -478,6 +540,9 @@
 
   export default {
     name: "Configurator",
+    components: {
+      Sketch
+    },
     data() {
       return {
         logos: logos,
@@ -495,6 +560,13 @@
         backgroundImageDataUrl: '',
         logoSize: 199,
         upperCase: 'uppercase',
+        bars: [{
+          x: 10,
+          y: 10,
+          fontSize: 1.2,
+          rotation: 10,
+          colors: defaultProps
+        }],
         bg: {
           x: '',
           y: '',
@@ -510,11 +582,13 @@
           transformOrigin: 'top left'
         }
       },
+
       scaleRelative() {
         return {
           minHeight: this.height * 0.4 + 10 + 'px',
         }
       },
+
       outerStyles() {
         return {
           width: this.width + 'px',
@@ -526,13 +600,7 @@
             ',url(' + this.backgroundImageDataUrl + ')',
         }
       },
-      contentStyles() {
-        return {
-          top: this.yPosition + 'px',
-          left: this.xPosition + 'px',
-          textTransform: this.upperCase,
-        }
-      },
+
       logoStyles() {
         return {
           width: this.logoSize + 'px',
@@ -541,6 +609,7 @@
         }
       }
     },
+
     mounted() {
       this.logo = require('./../assets/SVG/Zürich.svg');
       toDataURL(this.backgroundImage, (dataUrl) => {
@@ -552,22 +621,27 @@
         this.loadPreset('sharepic');
       }
     },
+
     methods: {
       loadPreset(preset) {
         Object.assign(this, presets[preset]);
       },
+
       startDrag() {
         this.dragging = true;
       },
+
       stopDrag() {
         this.dragging = false;
       },
+
       shiftElement(event) {
         if (this.dragging) {
           this.xPosition += event.movementX;
           this.yPosition += event.movementY;
         }
       },
+
       useLocalFile(event) {
         const reader = new FileReader();
 
@@ -578,6 +652,37 @@
           reader.readAsDataURL(event.target.files[0]);
         }
       },
+
+      addNewBar(){
+        this.bars.push({
+          x: 10,
+          y: 10,
+          fontSize: 1.2,
+          rotation: 10,
+          colors: defaultProps
+        })
+      },
+
+      deleteOneBar(){
+        this.bars.pop();
+      },
+
+      contentStyles(bar) {
+        return {
+          top: this.yPosition + 'px',
+          left: this.xPosition + 'px',
+          textTransform: this.upperCase,
+          transform: "rotate(-" + bar.rotation + "deg) skewX(-" + bar.rotation +"deg)",
+        }
+      },
+
+      barStyle(bar){
+        return {
+          backgroundColor: bar.colors.hex,
+          fontSize: bar.fontSize + 'em',
+        }
+      },
+
       generate() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
