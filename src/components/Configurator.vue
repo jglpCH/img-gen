@@ -43,32 +43,20 @@
 
       #content {
       position: relative;
-      top:-100px;
-      left: -40px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-transform: uppercase;
       }
 
       #content div {
-      <!-- transform: rotate(-10deg) skewX(-10deg); -->
       padding-bottom: 3px;
       color: white;
       white-space: nowrap;
       }
 
       #upper {
-      background-color: #BED933;
       padding-left: 0.4em !important;
       padding-right: 0.4em !important;
-      }
-
-      #lower {
-      background-color: #2D9CDB;
-      font-size: 1.4em;
-      padding-left: 0.3em !important;
-      padding-right: 0.3em !important;
       }
 
       #logoBackground {
@@ -87,6 +75,8 @@
       bottom: 10px;
       background-repeat: no-repeat;
       }
+
+      <!-- //TODO: Rotee umradung noch weg -->
 
     </v-style>
     <div class="container-fluid mt-3">
@@ -267,7 +257,6 @@
                                   <Sketch v-model="bar.colors"></Sketch>
                                 </div>
                               </div>
-                            <!-- TODO: hier noch die Elemente fertig machen -->
                       </div>
                     </div>
                   </div>
@@ -299,17 +288,16 @@
               <div id="container">
                 <div id="outer" ref="outer"
                      :style="outerStyles">
-                     <!-- TODO: Hier weiter fahren -->
                   <div id="content"
                        ref="content"
+                       v-for="(bar, index) in bars"
+                       v-bind:item="bar"
+                       v-bind:index="index"
+                       v-bind:key="bar.id"
                        @mousedown="startDrag"
                        @mouseup="stopDrag"
                        @mouseout="stopDrag"
-                       @mousemove="shiftElement" 
-                       v-for="(bar, index) in bars"
-                      v-bind:item="bar"
-                      v-bind:index="index"
-                      v-bind:key="bar.id"
+                       @mousemove="shiftElement($event, bar)" 
                       :style="contentStyles(bar)">
                     <div id="upper" lang="de-CH" contenteditable @keydown.enter.prevent="" :style="barStyle(bar)">für eine
                       lebenswerte Stadt
@@ -381,6 +369,29 @@ import { Sketch } from 'vue-color'
     r: 45,
     g: 156,
     b: 219,
+    a: 1
+  },
+  a: 0.9
+}
+
+  let defaultPropsGreen = {
+  hex: '#BED933',
+  hsl: {
+    h: 69.8,
+    s: 68.6,
+    l: 52.5,
+    a: 1
+  },
+  hsv: {
+    h: 286,
+    s: 5,
+    v: 76,
+    a: 1
+  },
+  rgba: {
+    r: 190,
+    g: 217,
+    b: 51,
     a: 1
   },
   a: 0.9
@@ -561,11 +572,21 @@ import { Sketch } from 'vue-color'
         logoSize: 199,
         upperCase: 'uppercase',
         bars: [{
-          x: 10,
-          y: 10,
+          x: -40,
+          y: -100,
           fontSize: 1.2,
           rotation: 10,
-          colors: defaultProps
+          colors: defaultProps,
+          textTransform: 'uppercase'
+        },
+        {
+          x: -50,
+          y: -52,
+          fontSize: 1.4,
+          rotation: 10,
+          colors: defaultPropsGreen,
+          textTransform: 'uppercase'
+          // TODO: uppercase noch überall reinmachen
         }],
         bg: {
           x: '',
@@ -575,6 +596,7 @@ import { Sketch } from 'vue-color'
         }
       }
     },
+
     computed: {
       imageScale() {
         return {
@@ -635,10 +657,10 @@ import { Sketch } from 'vue-color'
         this.dragging = false;
       },
 
-      shiftElement(event) {
+      shiftElement(event, bar) {
         if (this.dragging) {
-          this.xPosition += event.movementX;
-          this.yPosition += event.movementY;
+          bar.y += event.movementX;
+          bar.x += event.movementY;
         }
       },
 
@@ -669,8 +691,8 @@ import { Sketch } from 'vue-color'
 
       contentStyles(bar) {
         return {
-          top: this.yPosition + 'px',
-          left: this.xPosition + 'px',
+          top: bar.x + 'px',
+          left: bar.y + 'px',
           textTransform: this.upperCase,
           transform: "rotate(-" + bar.rotation + "deg) skewX(-" + bar.rotation +"deg)",
         }
