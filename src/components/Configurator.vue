@@ -117,7 +117,11 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link :to="{ query: { preset: 'insta-post' } }">Instagram-Beitrag
+                    <router-link :to="{ query: { preset: 'insta-post-hoch' } }">Instagram-Beitrag-Hochformat
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link :to="{ query: { preset: 'insta-post-quer' } }">Instagram-Beitrag-Querformat
                     </router-link>
                   </li>
                   <li>
@@ -253,19 +257,13 @@
                                 </div>
                                 <div class="col-md-4">
                                   <label for="color">Farbe</label>
-                                  <Sketch v-model="bar.colors"></Sketch>
+                                  <Sketch v-if="bar.showColorPicker" v-model="bar.colors" class="mb-2"></Sketch>
+                                  <button @click="bar.showColorPicker = !bar.showColorPicker" class="btn btn-primary btn-block" :style="{backgroundColor: bar.colors.hex, borderColor: bar.colors.hex}">Farbepicker ein/ausklappen</button>
                                 </div>
                               </div>
                       </div>
                     </div>
                   </div>
-
-<!--               
-              <label for="bgwidth">HG Breite</label><input v-model="bg.width" type="number" id="bgwidth">
-              <label for="bgheight">HG Höhe</label><input v-model="bg.height" type="number" id="bgheight">
-              <label for="bgx">HG X-Position</label><input v-model="bg.xPosition" type="number" id="bgx">
-              <label for="bgy">HG Y-Position</label><input v-model="bg.yPosition" type="number" id="bgy">
-              -->
 
               <button id="button" @click="generate" class="btn btn-primary btn-lg btn-block mt-4">
                 Erstellen
@@ -422,16 +420,24 @@ import { Sketch } from 'vue-color'
       fontSize: 60
     },
     'insta-story': {
-      width: 600,
-      height: 800,
+      width: 1080,
+      height: 1920,
       logoSize: 166,
       xPosition: -2,
       yPosition: -211,
       fontSize: 40
     },
-    'insta-post': {
-      width: 800,
-      height: 800,
+    'insta-post-hoch': {
+      width: 1080,
+      height: 1350,
+      logoSize: 206,
+      xPosition: -52,
+      yPosition: -211,
+      fontSize: 40
+    },
+    'insta-post-quer': {
+      width: 1080,
+      height: 566,
       logoSize: 206,
       xPosition: -52,
       yPosition: -211,
@@ -576,7 +582,8 @@ import { Sketch } from 'vue-color'
           fontSize: 1.2,
           rotation: 10,
           colors: defaultProps,
-          textTransform: 'uppercase'
+          textTransform: 'uppercase',
+          showColorPicker: false,
         },
         {
           x: -50,
@@ -584,7 +591,8 @@ import { Sketch } from 'vue-color'
           fontSize: 1.4,
           rotation: 10,
           colors: defaultPropsGreen,
-          textTransform: 'uppercase'
+          textTransform: 'uppercase',
+          showColorPicker: false,
         }],
         bg: {
           x: '',
@@ -679,7 +687,9 @@ import { Sketch } from 'vue-color'
           y: 10,
           fontSize: 1.2,
           rotation: 10,
-          colors: defaultProps
+          colors: defaultProps,
+          textTransform: 'uppercase',
+          showColorPicker: false,
         })
       },
 
