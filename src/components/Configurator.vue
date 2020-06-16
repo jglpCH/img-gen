@@ -214,21 +214,11 @@
                   <div class="col-md-4"><label for="fontSize">Schriftgrösse</label><input
                           class="form-control" type="number" id="fontSize" v-model="fontSize">
                   </div>
-
-                  <div class="col-md-4">
-                      <label for="fontUpperCase">Alles Gross</label>
-                      <select id="fontUpperCase" v-model="upperCase" class="form-control">
-                          <option value="uppercase">Alles gross</option>
-                          <option value="none" >Manuell</option>
-                          <option value="lowercase">Alles klein</option>
-                          <option value="capitalize">Erste Buchstabe vom Wort gross</option>
-                      </select>
-                  </div>
               </div>
 
               <h4 class="card-title mt-4">Balken Einstellungen</h4>
-                  <button class="btn-default" @click="addNewBar">Balken hinzufügen</button>
-                  <button class="btn-default" @click="deleteOneBar">Balken entfernen</button>
+                  <button class="btn btn-success mr-2" @click="addNewBar">Balken hinzufügen</button>
+                  <button class="btn btn-warning" @click="deleteOneBar">Balken entfernen</button>
                   <div class="row mt-4">
                     <div class="col-md-12">
                       <div  v-for="(bar, index) in bars"
@@ -251,6 +241,15 @@
                                 <div class="col-md-4">
                                   <label for="rotation">Winkel</label>
                                   <input class="form-control" type="number" id="rotation" v-model="bar.rotation">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="fontUpperCase">Text Transformation</label>
+                                  <select id="fontUpperCase" v-model="bar.textTransform" class="form-control">
+                                      <option value="uppercase">Alles gross</option>
+                                      <option value="none" >Manuell</option>
+                                      <option value="lowercase">Alles klein</option>
+                                      <option value="capitalize">Erste Buchstabe vom Wort gross</option>
+                                  </select>
                                 </div>
                                 <div class="col-md-4">
                                   <label for="color">Farbe</label>
@@ -586,7 +585,6 @@ import { Sketch } from 'vue-color'
           rotation: 10,
           colors: defaultPropsGreen,
           textTransform: 'uppercase'
-          // TODO: uppercase noch überall reinmachen
         }],
         bg: {
           x: '',
@@ -693,7 +691,7 @@ import { Sketch } from 'vue-color'
         return {
           top: bar.x + 'px',
           left: bar.y + 'px',
-          textTransform: this.upperCase,
+          textTransform: bar.textTransform,
           transform: "rotate(-" + bar.rotation + "deg) skewX(-" + bar.rotation +"deg)",
         }
       },
