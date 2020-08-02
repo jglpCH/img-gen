@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="col-md-4">
                                   <label for="rotation">Winkel</label>
-                                  <input class="form-control" type="number" id="rotation" v-model="bar.rotation">
+                                  <input class="form-control" type="number" id="rotation" v-model="bar.rotation" disabled>
                                 </div>
                                 <div class="col-md-4">
                                   <label for="fontUpperCase">Text Transformation</label>
