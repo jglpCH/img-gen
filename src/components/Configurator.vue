@@ -65,8 +65,6 @@
       background-repeat: no-repeat;
       }
 
-      <!-- //TODO: Rotee umradung noch weg -->
-
     </v-style>
     <div class="container-fluid mt-3">
       <div class="alert alert-info">Aktuell funktioniert der Generator nur im <a
@@ -214,13 +212,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <h4 class="card-title mt-4">Schrift Einstellungen</h4>
-              <div class="row">
-                  <div class="col-md-4"><label for="fontSize">Schriftgrösse</label><input
-                          class="form-control" type="number" id="fontSize" v-model="fontSize">
-                  </div>
               </div>
 
               <h4 class="card-title mt-4">Balken Einstellungen</h4>
@@ -403,96 +394,84 @@ import { Sketch } from 'vue-color'
       height: 600,
       logoSize: 177,
       xPosition: -80,
-      yPosition: -124,
-      fontSize: 40
+      yPosition: -124
     },
     'testimonial': {
       width: 600,
       height: 800,
       logoSize: 165,
       xPosition: -12,
-      yPosition: -211,
-      fontSize: 40
+      yPosition: -211
     },
     'insta-story': {
       width: 1080,
       height: 1920,
       logoSize: 166,
       xPosition: -2,
-      yPosition: -211,
-      fontSize: 40
+      yPosition: -211
     },
     'insta-post-hoch': {
       width: 1080,
       height: 1350,
       logoSize: 206,
       xPosition: -52,
-      yPosition: -211,
-      fontSize: 40
+      yPosition: -211
     },
     'insta-post-quer': {
       width: 1080,
       height: 566,
       logoSize: 206,
       xPosition: -52,
-      yPosition: -211,
-      fontSize: 40
+      yPosition: -211
     },
     'fb-cover': {
       width: 640,
       height: 360,
       logoSize: 159,
       xPosition: -39,
-      yPosition: -99,
-      fontSize: 40
+      yPosition: -99
     },
     'fb-feed': {
       width: 1200,
       height: 1200,
       logoSize: 159,
       xPosition: -39,
-      yPosition: -99,
-      fontSize: 40
+      yPosition: -99
     },
     'fb-link': {
       width: 1200,
       height: 628,
       logoSize: 159,
       xPosition: -39,
-      yPosition: -99,
-      fontSize: 40
+      yPosition: -99
     },
     'fb-event': {
       width: 640,
       height: 360,
       logoSize: 159,
       xPosition: -39,
-      yPosition: -99,
-      fontSize: 40
+      yPosition: -99
     },
     'fb-story': {
       width: 1080,
       height: 1920,
       logoSize: 159,
       xPosition: -39,
-      yPosition: -99,
-      fontSize: 40
+      yPosition: -99
     },
     'twitter-cover': {
       width: 1500,
       height: 500,
       logoSize: 275,
       xPosition: -74,
-      yPosition: -45,
-      fontSize: 60
+      yPosition: -45
     },
     'twitter-feed': {
       width: 1024,
       height: 512,
       logoSize: 275,
       xPosition: -74,
-      yPosition: -45,
-      fontSize: 60
+      yPosition: -45
     }
   };
 
@@ -609,7 +588,6 @@ import { Sketch } from 'vue-color'
         width: 800,
         xPosition: -40,
         yPosition: -100,
-        fontSize: 40,
         logoImageRatio: '',
         backgroundOverlay: 10.0,
         backgroundImageDataUrl: '',
@@ -618,7 +596,7 @@ import { Sketch } from 'vue-color'
         bars: [{
           x: -47,
           y: -51,
-          fontSize: 1.2,
+          fontSize: 3,
           rotation: 10,
           colors: defaultProps,
           textTransform: 'uppercase',
@@ -627,7 +605,7 @@ import { Sketch } from 'vue-color'
         {
           x: -50,
           y: -52,
-          fontSize: 1.4,
+          fontSize: 3.5,
           rotation: 10,
           colors: defaultPropsGreen,
           textTransform: 'uppercase',
