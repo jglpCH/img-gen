@@ -181,7 +181,15 @@
                 <div class="col-md-4"><label for="logosize">Logo-Grösse</label>
                   <input class="form-control" type="number" id="logosize" v-model="logoSize">
                 </div>
-              </div>
+
+                <!-- <div class="col-md-4"><label for="twitterBorder">Rahmen ums Bild</label>
+                  <div class="row">
+                    <input class="form-control input-sm col-md-2" type="checkbox" id="twitterBorder" v-model="twitterBorder">
+                    <Sketch v-if="showTwitterColor" v-model="twitterColor" class="mb-2"></Sketch>
+                    <button @click="showTwitterColor = !showTwitterColor" class="btn btn-primary col-md-7" :style="{backgroundColor: twitterColor.hex, borderColor: twitterColor.hex}">Farbepicker ein/ausklappen</button>
+                  </div>
+                </div>-->
+              </div> 
 
               <div class="row">
                 <div class="col-md-4">
@@ -533,6 +541,10 @@ import { Sketch } from 'vue-color'
       value: 'SZ',
       image: require('./../assets/SVG/Schwyz.svg'),
     }, {
+      text: 'Svizzera',
+      value: 'SV',
+      image: require('./../assets/SVG/svizzera.svg'),
+    }, {
       text: 'Uni Bern',
       value: 'UNIB',
       image: require('./../assets/SVG/UniBärn.svg'),
@@ -593,6 +605,9 @@ import { Sketch } from 'vue-color'
         backgroundImageDataUrl: '',
         logoSize: 199,
         upperCase: 'uppercase',
+        twitterBorder: false,
+        twitterColor: defaultPropsGreen,
+        showTwitterColor: false,
         bars: [{
           x: -47,
           y: -51,
@@ -656,7 +671,7 @@ import { Sketch } from 'vue-color'
     },
 
     mounted() {
-      this.logo = require('./../assets/SVG/Tessin.svg');
+      this.logo = require('./../assets/SVG/Zürich.svg');
       toDataURL(this.backgroundImage, (dataUrl) => {
         this.backgroundImageDataUrl = dataUrl;
       });
