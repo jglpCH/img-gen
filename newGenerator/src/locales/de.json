@@ -1,0 +1,48 @@
+{
+  "NAVIGATION": 
+  {
+    "home": "Generator",
+    "ci": "CI / CD",
+    "news": "News",
+    "contact": "Kontakt"
+  },
+  "CONTACT":
+  {
+    "main_info": "Wenn ihr Fehler findet, neue Features wünscht oder sonst Ideen zum Generator habt, dann wendet euch an Tobias Gatschet (<b>@Tobias Gatschet (SO)</b> in Slack).",
+    "second_info": "Habt ihr Anregungen bezüglich dem CI/CD, dann meldet euch im <b># grafik</b> in Slack."
+  },
+  "CI":
+  {
+    "color": "Farben",
+    "font_color": "Schrift Farben",
+    "graphics_elements": "Graphische Elemente",
+    "fonts": "Schriften",
+    "use": "Einsatz:",
+    "use_title": "Titel:",
+    "use_title_desc": "Oswald Medium, Semibold und Bold. Alles Grossbuchstaben. Fette Schrift darf verwendet werden.",
+    "use_text": "Fliesstext:",
+    "use_text_desc": "Ubuntu",
+    "use_italic": "Kursiv:",
+    "use_italic_desc": "Nur um etwas wichtiges wie Medienmitteilungen oder Zitate hervorzuheben.",
+    "use_hyperlinks": "Hyperlinks:",
+    "use_hyperlinks_desc": "In hellblau und unterstrichen.",
+    "use_hashtag": "Hashtags:",
+    "use_hashtag_desc": "Oswald, Gross- und Kleinbuchstaben sind erlaubt."
+  },
+  "NEWS": "In dieser Rubrik werden kurz die neusten News und Infos bezogen auf den Generator aufgelistet. <br> Es kommen laufend neue Features hinzu, schaue als immer mal wieder hier nach um nichts neues zu verpassen. Leider gibt es diesen Bereich im Moment nur auf Deutsch.",
+  "SELECTIONS":
+  {
+    "name_title": "Namen",
+    "social_media_title": "Plattform",
+    "social_media_template": "Vorlage",
+    "background_image_title": "Hintergrund Bild",
+    "border_title": "Rahmen",
+    "logo_title": "Logo",
+    "bar_title": "Balken",
+    "NAME":
+    {
+      "name": "Gib dem Bild einen Namen: ",
+      "name_hint": "Dein Bild braucht einen Namen!"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+/* Color */
+$font-light: #fff;
+$font-dark : #000;
+$background-light-grey: #fafafa;
+
+// CI/CD Colors
+$green-light: #82B43C;
+$green-dark : #004B32;
+
+$blue-light: #119CD4; 
+$blue-dark : #052A39;
+
+// Borders
+$border-black: #dfdfdf;
+$border-active: $green-light;
+
+/* Fonts */
+// Ubuntu
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+$font-ubuntu: 'Ubuntu', sans-serif;
+
+// Oswald
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
+$font-oswald: 'Oswald', sans-serif;
+$font-oswald-medium     : 500;
+$font-oswald-semibold   : 600;
+$font-oswald-bold       : 700;
+
+// Main Font Webpage
+$font-main: Arial, sans-serif;
+
+/* All others */
+$angle: 10;

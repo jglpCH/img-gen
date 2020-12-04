@@ -1,0 +1,33 @@
+{
+  "NAVIGATION": 
+  {
+    "home": "Générateur",
+    "ci": "CI / CD",
+    "news": "Nouvelles",
+    "contact": "Contact"
+  },
+  "CONTACT":
+  {
+    "main_info": "Si vous trouvez des bugs, voulez de nouvelles fonctionnalités ou avez d'autres idées sur le générateur, veuillez contacter Tobias Gatschet (<b>@Tobias Gatschet (SO)</b> en Slack).",
+    "second_info": "Si vous avez des suggestions concernant l'IC/CD, veuillez nous contacter dans le <b># grafik</b> dans Slack."
+  },
+  "CI":
+  {
+    "color": "Couleurs",
+    "font_color": "Couleurs des fontes",
+    "graphics_elements": "Éléments graphiques",
+    "fonts": "Fontes",
+    "use": "Déploiement:",
+    "use_title": "Titre:",
+    "use_title_desc": "Oswald Medium, Semibold et Bold. Toutes les lettres sont en majuscules. Les caractères gras peuvent être utilisés.",
+    "use_text": "Texte continu:",
+    "use_text_desc": "Ubuntu",
+    "use_italic": "En italique :",
+    "use_italic_desc": "Juste pour souligner quelque chose d'important comme des communiqués de presse ou des citations.",
+    "use_hyperlinks": "Hyperliens:",
+    "use_hyperlinks_desc": "En bleu clair et souligné.",
+    "use_hashtag": "Hashtags:",
+    "use_hashtag_desc": "Oswald, les lettres majuscules et minuscules sont autorisées."
+  },
+  "NEWS": "Dans cette section, vous trouverez les dernières nouvelles et informations concernant le générateur. <br> De nouvelles fonctionnalités sont ajoutées en permanence, alors revenez ici de temps en temps pour vous assurer que vous ne manquez rien de nouveau. Malheureusement, cette section n'est pour l'instant disponible qu'en allemand."
+}
