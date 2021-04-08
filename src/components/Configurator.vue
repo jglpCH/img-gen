@@ -327,31 +327,33 @@
 </template>
 
 <script>
-import { Sketch } from 'vue-color'
+import { Sketch } from "vue-color";
 
-  function toDataURL(url, callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-      var reader = new FileReader();
-      reader.onloadend = function () {
-        callback(reader.result);
-      };
-      reader.readAsDataURL(xhr.response);
+function toDataURL(url, callback) {
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      callback(reader.result);
     };
-    xhr.onerror = function () {
-      alert("Das Bild konnte wegen eines Fehlers nicht geladen werde. Probiere ein anderes." +
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.onerror = function() {
+    alert(
+      "Das Bild konnte wegen eines Fehlers nicht geladen werde. Probiere ein anderes." +
         "\n\n" +
         "Mögliche Fehler: \n" +
         "Du bist offline. Geh online!\n" +
-        "Cross-Origin-Header ist gesetzt: Da kannst du nichts machen, such dir ein anderes Bild.");
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-  }
+        "Cross-Origin-Header ist gesetzt: Da kannst du nichts machen, such dir ein anderes Bild."
+    );
+  };
+  xhr.open("GET", url);
+  xhr.responseType = "blob";
+  xhr.send();
+}
 
-  let defaultProps = {
-  hex: '#2D9CDB',
+let defaultProps = {
+  hex: "#2D9CDB",
   hsl: {
     h: 201.7,
     s: 70.7,
@@ -371,10 +373,10 @@ import { Sketch } from 'vue-color'
     a: 1
   },
   a: 0.9
-}
+};
 
-  let defaultPropsGreen = {
-  hex: '#BED933',
+let defaultPropsGreen = {
+  hex: "#BED933",
   hsl: {
     h: 69.8,
     s: 68.6,
@@ -394,228 +396,257 @@ import { Sketch } from 'vue-color'
     a: 1
   },
   a: 0.9
-}
+};
 
-  const presets = {
-    'sharepic': {
-      width: 800,
+const presets = {
+  sharepic: {
+    width: 800,
+    height: 600,
+    logoSize: 177,
+    xPosition: -80,
+    yPosition: -124
+  },
+  testimonial: {
+    width: 600,
+    height: 800,
+    logoSize: 165,
+    xPosition: -12,
+    yPosition: -211
+  },
+  "insta-story": {
+    width: 1080,
+    height: 1920,
+    logoSize: 166,
+    xPosition: -2,
+    yPosition: -211
+  },
+  "insta-post-hoch": {
+    width: 1080,
+    height: 1350,
+    logoSize: 206,
+    xPosition: -52,
+    yPosition: -211
+  },
+  "insta-post-quer": {
+    width: 1080,
+    height: 566,
+    logoSize: 206,
+    xPosition: -52,
+    yPosition: -211
+  },
+  "fb-cover": {
+    width: 640,
+    height: 360,
+    logoSize: 159,
+    xPosition: -39,
+    yPosition: -99
+  },
+  "fb-feed": {
+    width: 1200,
+    height: 1200,
+    logoSize: 159,
+    xPosition: -39,
+    yPosition: -99
+  },
+  "fb-link": {
+    width: 1200,
+    height: 628,
+    logoSize: 159,
+    xPosition: -39,
+    yPosition: -99
+  },
+  "fb-event": {
+    width: 640,
+    height: 360,
+    logoSize: 159,
+    xPosition: -39,
+    yPosition: -99
+  },
+  "fb-story": {
+    width: 1080,
+    height: 1920,
+    logoSize: 159,
+    xPosition: -39,
+    yPosition: -99
+  },
+  "twitter-cover": {
+    width: 1500,
+    height: 500,
+    logoSize: 275,
+    xPosition: -74,
+    yPosition: -45
+  },
+  "twitter-feed": {
+    width: 1024,
+    height: 512,
+    logoSize: 275,
+    xPosition: -74,
+    yPosition: -45
+  }
+};
+
+const logos = [
+  {
+    text: "Schweiz",
+    value: "CH-DE",
+    image: require("./../assets/SVG/Schweiz.svg")
+  },
+  {
+    text: "Suisse",
+    value: "CH-FR",
+    image: require("./../assets/SVG/Suisse.svg")
+  },
+  {
+    text: "Zürich",
+    value: "ZH",
+    image: require("./../assets/SVG/Zürich.svg")
+  },
+  {
+    text: "Stadt Züri",
+    value: "STZH",
+    image: require("./../assets/SVG/StadtZurich.svg")
+  },
+  {
+    text: "Winterthur",
+    value: "Winti",
+    image: require("./../assets/SVG/Winti.svg")
+  },
+  {
+    text: "Bern",
+    value: "BE",
+    image: require("./../assets/SVG/Bern.svg")
+  },
+  {
+    text: "Aargau",
+    value: "AG",
+    image: require("./../assets/SVG/Aargau.svg")
+  },
+  {
+    text: "Graubünden",
+    value: "GR",
+    image: require("./../assets/SVG/Graubünden.svg")
+  },
+  {
+    text: "Luzern",
+    value: "LU",
+    image: require("./../assets/SVG/Luzern.svg")
+  },
+  {
+    text: "Glarus",
+    value: "GL",
+    image: require("./../assets/SVG/Glarus.svg")
+  },
+  {
+    text: "St. Gallen",
+    value: "SG",
+    image: require("./../assets/SVG/STGallen.svg")
+  },
+  {
+    text: "Thurgau",
+    value: "TG",
+    image: require("./../assets/SVG/Thurgau.svg")
+  },
+  {
+    text: "Zug",
+    value: "ZG",
+    image: require("./../assets/SVG/Zug.svg")
+  },
+  {
+    text: "Solothurn",
+    value: "SO",
+    image: require("./../assets/SVG/Solothurn.svg")
+  },
+  {
+    text: "Schwyz",
+    value: "SZ",
+    image: require("./../assets/SVG/Schwyz.svg")
+  },
+  {
+    text: "Svizzera",
+    value: "SV",
+    image: require("./../assets/SVG/svizzera.svg")
+  },
+  {
+    text: "Uni Bern",
+    value: "UNIB",
+    image: require("./../assets/SVG/UniBärn.svg")
+  },
+  {
+    text: "Beide Basel",
+    value: "BB",
+    image: require("./../assets/SVG/BeideBasel.svg")
+  },
+  {
+    text: "Schaffhausen",
+    value: "SH",
+    image: require("./../assets/SVG/Schaffhausen.svg")
+  },
+  {
+    text: "Tessin",
+    value: "TI",
+    image: require("./../assets/SVG/Tessin.svg")
+  },
+  {
+    text: "Vaud",
+    value: "VD",
+    image: require("./../assets/SVG/Vaud.svg")
+  },
+  {
+    text: "Genève",
+    value: "GE",
+    image: require("./../assets/SVG/Geneve.svg")
+  },
+  {
+    text: "Fribourg",
+    value: "FR",
+    image: require("./../assets/SVG/Fribourg.svg")
+  },
+  {
+    text: "Neuchâtel",
+    value: "NE",
+    image: require("./../assets/SVG/Neuchatel.svg")
+  },
+  {
+    text: "Nid- und Obwalden",
+    value: "NOW",
+    image: require("./../assets/SVG/NidObWalden.svg")
+  }
+];
+
+export default {
+  name: "Configurator",
+  components: {
+    Sketch
+  },
+  data() {
+    return {
+      logos: logos,
+      dragging: false,
+      logo: undefined,
+      logoDataUrl: "",
+      backgroundImage:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Limmat-Quaibr%C3%BCcke.jpg/1280px-Limmat-Quaibr%C3%BCcke.jpg",
       height: 600,
-      logoSize: 177,
-      xPosition: -80,
-      yPosition: -124
-    },
-    'testimonial': {
-      width: 600,
-      height: 800,
-      logoSize: 165,
-      xPosition: -12,
-      yPosition: -211
-    },
-    'insta-story': {
-      width: 1080,
-      height: 1920,
-      logoSize: 166,
-      xPosition: -2,
-      yPosition: -211
-    },
-    'insta-post-hoch': {
-      width: 1080,
-      height: 1350,
-      logoSize: 206,
-      xPosition: -52,
-      yPosition: -211
-    },
-    'insta-post-quer': {
-      width: 1080,
-      height: 566,
-      logoSize: 206,
-      xPosition: -52,
-      yPosition: -211
-    },
-    'fb-cover': {
-      width: 640,
-      height: 360,
-      logoSize: 159,
-      xPosition: -39,
-      yPosition: -99
-    },
-    'fb-feed': {
-      width: 1200,
-      height: 1200,
-      logoSize: 159,
-      xPosition: -39,
-      yPosition: -99
-    },
-    'fb-link': {
-      width: 1200,
-      height: 628,
-      logoSize: 159,
-      xPosition: -39,
-      yPosition: -99
-    },
-    'fb-event': {
-      width: 640,
-      height: 360,
-      logoSize: 159,
-      xPosition: -39,
-      yPosition: -99
-    },
-    'fb-story': {
-      width: 1080,
-      height: 1920,
-      logoSize: 159,
-      xPosition: -39,
-      yPosition: -99
-    },
-    'twitter-cover': {
-      width: 1500,
-      height: 500,
-      logoSize: 275,
-      xPosition: -74,
-      yPosition: -45
-    },
-    'twitter-feed': {
-      width: 1024,
-      height: 512,
-      logoSize: 275,
-      xPosition: -74,
-      yPosition: -45
-    }
-  };
-
-  const logos = [
-    {
-      text: 'Schweiz',
-      value: 'CH-DE',
-      image: require('./../assets/SVG/Schweiz.svg'),
-    }, {
-      text: 'Suisse',
-      value: 'CH-FR',
-      image: require('./../assets/SVG/Suisse.svg'),
-    }, {
-      text: 'Zürich',
-      value: 'ZH',
-      image: require('./../assets/SVG/Zürich.svg'),
-    }, {
-      text: 'Winterthur',
-      value: 'Winti',
-      image: require('./../assets/SVG/Winti.svg'),
-    }, {
-      text: 'Bern',
-      value: 'BE',
-      image: require('./../assets/SVG/Bern.svg'),
-    }, {
-      text: 'Aargau',
-      value: 'AG',
-      image: require('./../assets/SVG/Aargau.svg'),
-    }, {
-      text: 'Graubünden',
-      value: 'GR',
-      image: require('./../assets/SVG/Graubünden.svg'),
-    }, {
-      text: 'Luzern',
-      value: 'LU',
-      image: require('./../assets/SVG/Luzern.svg'),
-    }, {
-      text: 'Glarus',
-      value: 'GL',
-      image: require('./../assets/SVG/Glarus.svg'),
-    }, {
-      text: 'St. Gallen',
-      value: 'SG',
-      image: require('./../assets/SVG/STGallen.svg'),
-    }, {
-      text: 'Thurgau',
-      value: 'TG',
-      image: require('./../assets/SVG/Thurgau.svg'),
-    }, {
-      text: 'Zug',
-      value: 'ZG',
-      image: require('./../assets/SVG/Zug.svg'),
-    }, {
-      text: 'Solothurn',
-      value: 'SO',
-      image: require('./../assets/SVG/Solothurn.svg'),
-    }, {
-      text: 'Schwyz',
-      value: 'SZ',
-      image: require('./../assets/SVG/Schwyz.svg'),
-    }, {
-      text: 'Svizzera',
-      value: 'SV',
-      image: require('./../assets/SVG/svizzera.svg'),
-    }, {
-      text: 'Uni Bern',
-      value: 'UNIB',
-      image: require('./../assets/SVG/UniBärn.svg'),
-    }, {
-      text: 'Beide Basel',
-      value: 'BB',
-      image: require('./../assets/SVG/BeideBasel.svg'),
-    }, {
-      text: 'Schaffhausen',
-      value: 'SH',
-      image: require('./../assets/SVG/Schaffhausen.svg'),
-    }, {
-      text: 'Tessin',
-      value: 'TI',
-      image: require('./../assets/SVG/Tessin.svg'),
-    }, {
-      text: 'Vaud',
-      value: 'VD',
-      image: require('./../assets/SVG/Vaud.svg'),
-    }, {
-      text: 'Genève',
-      value: 'GE',
-      image: require('./../assets/SVG/Geneve.svg'),
-    }, {
-      text: 'Fribourg',
-      value: 'FR',
-      image: require('./../assets/SVG/Fribourg.svg'),
-    }, {
-      text: 'Neuchâtel',
-      value: 'NE',
-      image: require('./../assets/SVG/Neuchatel.svg'),
-    }, {
-      text: 'Nid- und Obwalden',
-      value: 'NOW',
-      image: require('./../assets/SVG/NidObWalden.svg'),
-    }
-  ];
-
-
-  export default {
-    name: "Configurator",
-    components: {
-      Sketch
-    },
-    data() {
-      return {
-        logos: logos,
-        dragging: false,
-        logo: undefined,
-        logoDataUrl: '',
-        backgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Limmat-Quaibr%C3%BCcke.jpg/1280px-Limmat-Quaibr%C3%BCcke.jpg',
-        height: 600,
-        width: 800,
-        xPosition: -40,
-        yPosition: -100,
-        logoImageRatio: '',
-        backgroundOverlay: 10.0,
-        backgroundImageDataUrl: '',
-        logoSize: 199,
-        upperCase: 'uppercase',
-        twitterBorder: false,
-        twitterColor: defaultPropsGreen,
-        showTwitterColor: false,
-        bars: [{
+      width: 800,
+      xPosition: -40,
+      yPosition: -100,
+      logoImageRatio: "",
+      backgroundOverlay: 10.0,
+      backgroundImageDataUrl: "",
+      logoSize: 199,
+      upperCase: "uppercase",
+      twitterBorder: false,
+      twitterColor: defaultPropsGreen,
+      showTwitterColor: false,
+      bars: [
+        {
           x: -47,
           y: -51,
           fontSize: 3,
           rotation: 10,
           colors: defaultProps,
-          textTransform: 'uppercase',
-          showColorPicker: false,
+          textTransform: "uppercase",
+          showColorPicker: false
         },
         {
           x: -50,
@@ -623,306 +654,325 @@ import { Sketch } from 'vue-color'
           fontSize: 3.5,
           rotation: 10,
           colors: defaultPropsGreen,
-          textTransform: 'uppercase',
-          showColorPicker: false,
-        }],
-        bg: {
-          x: '',
-          y: '',
-          width: '',
-          height: '',
+          textTransform: "uppercase",
+          showColorPicker: false
         }
+      ],
+      bg: {
+        x: "",
+        y: "",
+        width: "",
+        height: ""
+      }
+    };
+  },
+
+  computed: {
+    imageScale() {
+      return {
+        transform: "scale(1)",
+        transformOrigin: "top left"
+      };
+    },
+
+    scaleRelative() {
+      return {
+        minHeight: this.height * 0.4 + 10 + "px"
+      };
+    },
+
+    outerStyles() {
+      return {
+        width: this.width + "px",
+        height: this.height + "px",
+        fontSize: this.fontSize + "px",
+        backgroundImage:
+          "linear-gradient(to bottom, rgba(255, 255, 255, " +
+          this.backgroundOverlay / 100 +
+          ")" +
+          ",rgba(255, 255, 255, " +
+          this.backgroundOverlay / 100 +
+          "))" +
+          ",url(" +
+          this.backgroundImageDataUrl +
+          ")"
+      };
+    },
+
+    logoStyles() {
+      return {
+        width: this.logoSize + "px",
+        height: this.logoSize * this.logoImageRatio + "px",
+        backgroundImage: "url('" + this.logoDataUrl + "')"
+      };
+    }
+  },
+
+  mounted() {
+    this.logo = require("./../assets/SVG/Zürich.svg");
+    toDataURL(this.backgroundImage, dataUrl => {
+      this.backgroundImageDataUrl = dataUrl;
+    });
+    if (this.$route.query.preset) {
+      this.loadPreset(this.$route.query.preset);
+    } else {
+      this.loadPreset("sharepic");
+    }
+  },
+
+  methods: {
+    loadPreset(preset) {
+      Object.assign(this, presets[preset]);
+    },
+
+    startDrag() {
+      this.dragging = true;
+    },
+
+    stopDrag() {
+      this.dragging = false;
+    },
+
+    shiftElement(event, bar) {
+      if (this.dragging) {
+        bar.y += event.movementX;
+        bar.x += event.movementY;
       }
     },
 
-    computed: {
-      imageScale() {
-        return {
-          transform: 'scale(1)',
-          transformOrigin: 'top left'
-        }
-      },
+    useLocalFile(event) {
+      const reader = new FileReader();
 
-      scaleRelative() {
-        return {
-          minHeight: this.height * 0.4 + 10 + 'px',
-        }
-      },
-
-      outerStyles() {
-        return {
-          width: this.width + 'px',
-          height: this.height + 'px',
-          fontSize: this.fontSize + 'px',
-          backgroundImage:
-            'linear-gradient(to bottom, rgba(255, 255, 255, ' + this.backgroundOverlay / 100 + ')' +
-            ',rgba(255, 255, 255, ' + this.backgroundOverlay / 100 + '))' +
-            ',url(' + this.backgroundImageDataUrl + ')',
-        }
-      },
-
-      logoStyles() {
-        return {
-          width: this.logoSize + 'px',
-          height: this.logoSize * this.logoImageRatio + 'px',
-          backgroundImage: 'url(\'' + this.logoDataUrl + '\')',
-        }
+      reader.addEventListener(
+        "load",
+        () => {
+          this.backgroundImageDataUrl = reader.result;
+        },
+        false
+      );
+      if (event.target.files[0]) {
+        reader.readAsDataURL(event.target.files[0]);
       }
     },
 
-    mounted() {
-      this.logo = require('./../assets/SVG/Zürich.svg');
-      toDataURL(this.backgroundImage, (dataUrl) => {
+    addNewBar() {
+      this.bars.push({
+        x: 10,
+        y: 10,
+        fontSize: 1.2,
+        rotation: 10,
+        colors: defaultProps,
+        textTransform: "uppercase",
+        showColorPicker: false
+      });
+    },
+
+    deleteOneBar() {
+      this.bars.pop();
+    },
+
+    contentStyles(bar) {
+      return {
+        top: bar.x + "px",
+        left: bar.y + "px",
+        textTransform: bar.textTransform,
+        transform:
+          "rotate(-" + bar.rotation + "deg) skewX(-" + bar.rotation + "deg)"
+      };
+    },
+
+    barStyle(bar) {
+      return {
+        backgroundColor: bar.colors.hex,
+        fontSize: bar.fontSize + "em"
+      };
+    },
+
+    generate() {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = this.width;
+      canvas.height = this.height;
+      var pixelRatio = window.devicePixelRatio || 1;
+
+      // lets scale the canvas and change its CSS width/height to make it high res.
+      canvas.style.width = canvas.width + "px";
+      canvas.style.height = canvas.height + "px";
+      canvas.width *= pixelRatio;
+      canvas.height *= pixelRatio;
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+      const tempImg = document.createElement("img");
+      const htmlm = document.getElementById("container").innerHTML;
+      const style = document.getElementById("style").innerHTML;
+      tempImg.addEventListener("load", onTempImageLoad);
+      tempImg.src =
+        "data:image/svg+xml," +
+        encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="' +
+            this.width +
+            '" height="' +
+            this.height +
+            '"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml"><style>' +
+            style +
+            "</style>" +
+            htmlm +
+            "</div></foreignObject></svg>"
+        );
+
+      const targetImg = document.createElement("img");
+
+      targetImg.style.width = canvas.style.width;
+      targetImg.style.height = canvas.style.height;
+
+      document.getElementById("output").innerHTML = "";
+      document.getElementById("output").appendChild(targetImg);
+
+      window.scrollTo(
+        0,
+        document.getElementById("output").offsetTop +
+          document.getElementById("output").offsetHeight
+      );
+
+      function onTempImageLoad(e) {
+        ctx.drawImage(e.target, 0, 0);
+        targetImg.src = canvas.toDataURL();
+        targetImg.addEventListener("click", function() {
+          window.open(targetImg.src, "_blank");
+        });
+      }
+    }
+  },
+  watch: {
+    backgroundImage: function() {
+      toDataURL(this.backgroundImage, dataUrl => {
         this.backgroundImageDataUrl = dataUrl;
       });
-      if (this.$route.query.preset) {
-        this.loadPreset(this.$route.query.preset);
-      } else {
-        this.loadPreset('sharepic');
-      }
     },
-
-    methods: {
-      loadPreset(preset) {
-        Object.assign(this, presets[preset]);
-      },
-
-      startDrag() {
-        this.dragging = true;
-      },
-
-      stopDrag() {
-        this.dragging = false;
-      },
-
-      shiftElement(event, bar) {
-        if (this.dragging) {
-          bar.y += event.movementX;
-          bar.x += event.movementY;
-        }
-      },
-
-      useLocalFile(event) {
-        const reader = new FileReader();
-
-        reader.addEventListener("load", () => {
-          this.backgroundImageDataUrl = reader.result;
-        }, false);
-        if (event.target.files[0]) {
-          reader.readAsDataURL(event.target.files[0]);
-        }
-      },
-
-      addNewBar(){
-        this.bars.push({
-          x: 10,
-          y: 10,
-          fontSize: 1.2,
-          rotation: 10,
-          colors: defaultProps,
-          textTransform: 'uppercase',
-          showColorPicker: false,
-        })
-      },
-
-      deleteOneBar(){
-        this.bars.pop();
-      },
-
-      contentStyles(bar) {
-        return {
-          top: bar.x + 'px',
-          left: bar.y + 'px',
-          textTransform: bar.textTransform,
-          transform: "rotate(-" + bar.rotation + "deg) skewX(-" + bar.rotation +"deg)",
-        }
-      },
-
-      barStyle(bar){
-        return {
-          backgroundColor: bar.colors.hex,
-          fontSize: bar.fontSize + 'em',
-        }
-      },
-
-      generate() {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = this.width;
-        canvas.height = this.height;
-        var pixelRatio = window.devicePixelRatio || 1;
-
-        // lets scale the canvas and change its CSS width/height to make it high res.
-        canvas.style.width = canvas.width + 'px';
-        canvas.style.height = canvas.height + 'px';
-        canvas.width *= pixelRatio;
-        canvas.height *= pixelRatio;
-        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-
-        const tempImg = document.createElement('img');
-        const htmlm = document.getElementById('container').innerHTML;
-        const style = document.getElementById('style').innerHTML;
-        tempImg.addEventListener('load', onTempImageLoad);
-        tempImg.src = 'data:image/svg+xml,' +
-          encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'
-            + this.width + '" height="' + this.height
-            + '"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml"><style>'
-            + style + '</style>' + htmlm + '</div></foreignObject></svg>');
-
-        const targetImg = document.createElement('img');
-
-        targetImg.style.width = canvas.style.width;
-        targetImg.style.height = canvas.style.height;
-
-        document.getElementById('output').innerHTML = '';
-        document.getElementById('output').appendChild(targetImg);
-
-        window.scrollTo(0, document.getElementById('output').offsetTop+document.getElementById('output').offsetHeight);
-
-
-        function onTempImageLoad(e) {
-          ctx.drawImage(e.target, 0, 0);
-          targetImg.src = canvas.toDataURL();
-          targetImg.addEventListener('click', function () {
-            window.open(targetImg.src, '_blank');
-          });
-        }
-      }
+    logo: function() {
+      toDataURL(this.logo, dataUrl => {
+        this.logoDataUrl = dataUrl;
+        const tempImage = new Image();
+        tempImage.onload = () => {
+          this.logoImageRatio = tempImage.height / tempImage.width;
+        };
+        tempImage.src = dataUrl;
+      });
     },
-    watch: {
-      backgroundImage: function () {
-        toDataURL(this.backgroundImage, (dataUrl) => {
-          this.backgroundImageDataUrl = dataUrl;
-        });
-      },
-      logo: function () {
-        toDataURL(this.logo, (dataUrl) => {
-          this.logoDataUrl = dataUrl;
-          const tempImage = new Image();
-          tempImage.onload = () => {
-            this.logoImageRatio = tempImage.height / tempImage.width;
-          };
-          tempImage.src = dataUrl
-        });
-      },
-      '$route'(to) {
-        if (to.query.preset) {
-          this.loadPreset(to.query.preset);
-        }
+    $route(to) {
+      if (to.query.preset) {
+        this.loadPreset(to.query.preset);
       }
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
+ol {
+  margin: auto;
+  width: 300px;
+  text-align: left;
+}
 
+#container {
+  margin: auto;
+  display: inline-block;
+}
 
-  ol {
-    margin: auto;
-    width: 300px;
-    text-align: left;
+#content {
+  cursor: move;
+
+  &:hover {
+    background-color: rgba(#fff, 0.8);
   }
+}
 
-  #container {
-    margin: auto;
+input[type="file"] {
+  width: initial;
+}
+
+ul.inline {
+  list-style: none;
+
+  li {
     display: inline-block;
-  }
 
-  #content {
-    cursor: move;
-
-    &:hover {
-      background-color: rgba(#fff, 0.8);
+    a {
+      padding: 2px 15px 2px 0;
     }
   }
+}
 
+a {
+  color: #2d9cdb;
+  text-decoration: none;
 
-  input[type=file] {
-    width: initial;
+  &:hover,
+  &.router-link-active-exact {
+    color: #bed933;
   }
+}
 
+.external a {
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(transparent, transparent),
+    url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%2336c%22 d=%22M1.5 4.518h5.982V10.5H1.5z%22/%3E %3Cpath fill=%22%2336c%22 d=%22M5.765 1H11v5.39L9.427 7.937l-1.31-1.31L5.393 9.35l-2.69-2.688 2.81-2.808L4.2 2.544z%22/%3E %3Cpath fill=%22%23fff%22 d=%22M9.995 2.004l.022 4.885L8.2 5.07 5.32 7.95 4.09 6.723l2.882-2.88-1.85-1.852z%22/%3E %3C/svg%3E");
+  padding-right: 13px;
+}
 
-  ul.inline {
-    list-style: none;
+.hidden {
+  display: none;
+}
 
-    li {
-      display: inline-block;
+.presets,
+.external {
+  margin: 0;
+  padding: 0;
+}
 
-      a {
-        padding: 2px 15px 2px 0;
-      }
-    }
-  }
+.presets li,
+.external li {
+  margin: 0;
+  padding: 0;
+}
 
-  a {
-    color: #2D9CDB;
-    text-decoration: none;
+.external li {
+  margin-right: 10px;
+}
 
-    &:hover, &.router-link-active-exact {
-      color: #BED933;
-    }
-  }
+.scale {
+  transform: scale(0.4) translate(-75%, -80%);
+  top: 0;
+  left: 0;
+}
 
-  .external a {
-    background-position: center right;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(transparent, transparent), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%2336c%22 d=%22M1.5 4.518h5.982V10.5H1.5z%22/%3E %3Cpath fill=%22%2336c%22 d=%22M5.765 1H11v5.39L9.427 7.937l-1.31-1.31L5.393 9.35l-2.69-2.688 2.81-2.808L4.2 2.544z%22/%3E %3Cpath fill=%22%23fff%22 d=%22M9.995 2.004l.022 4.885L8.2 5.07 5.32 7.95 4.09 6.723l2.882-2.88-1.85-1.852z%22/%3E %3C/svg%3E");
-    padding-right: 13px;
-  }
+.scale-relative {
+  position: relative;
+  min-height: 350px;
+}
 
-  .hidden {
-    display:none;
-  }
+.alert-info a {
+  color: #fff;
+}
 
-  .presets, .external {
-    margin:0;
-    padding:0;
-  }
+h2,
+.h2 {
+  font-size: 1.5rem;
+}
 
-  .presets li, .external li {
-    margin:0;
-    padding:0;
-  }
+label {
+  margin-top: 0.8rem;
+  margin-bottom: 0.2rem;
+}
 
-  .external li {
-    margin-right: 10px;
-  }
+label.btn {
+  margin-top: 0;
+}
 
-
-  .scale {
-    transform: scale(0.4) translate(-75%, -80%);
-    top:0;
-    left:0;
-  }
-
-  .scale-relative {
-    position:relative;
-    min-height: 350px;
-  }
-
-
-  .alert-info a {
-    color: #fff;
-  }
-
-  h2, .h2 {
-    font-size: 1.5rem;
-  }
-
-  label {
-    margin-top: 0.8rem;
-    margin-bottom: 0.2rem;
-  }
-
-
-  label.btn {
-    margin-top:0;
-  }
-
-  #output img {
-    max-width: 100%;
-    height: auto !important;
-  }
-
-
+#output img {
+  max-width: 100%;
+  height: auto !important;
+}
 </style>
