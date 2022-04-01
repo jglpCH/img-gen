@@ -1,0 +1,311 @@
+/** @format */
+@import './../../css/_variables.scss';
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+#vue-browserlike-window {
+    min-width: 120px;
+    min-height: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+}
+/* navi */
+.vue-browserlike-window__navi_bar {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background: $green-dark;
+    cursor: move;
+}
+/* tab */
+ul.vue-browserlike-window__tab_headers {
+    position: relative;
+    bottom: -1px;
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 0;
+    height: 40px;
+    margin: 0;
+    margin-left: 20px;
+    background: #f54444;
+}
+ul.vue-browserlike-window__tab_headers li {
+    position: relative;
+    display: flex;
+    align-self: flex-end;
+    z-index: 100;
+    border-bottom: none;
+    min-width: 50px;
+    padding: 0;
+    margin-top: 5px;
+    height: 30px;
+    box-sizing: border-box;
+    background: #f54444;
+    border-radius: 0 0 5px 5px;
+}
+ul.vue-browserlike-window__tab_headers li.active {
+    background: #fff;
+    border-radius: 5px 5px 0 0;
+}
+/* handle */
+.vue-browserlike-window__handle_dot,
+.vue-browserlike-window__hendle span:nth-child(1):after,
+.vue-browserlike-window__hendle span:nth-child(1):before,
+.vue-browserlike-window__hendle span:nth-child(2):after,
+.vue-browserlike-window__hendle span:nth-child(2):before,
+.vue-browserlike-window__hendle span:nth-child(3):after,
+.vue-browserlike-window__hendle span:nth-child(3):before {
+    display: block;
+    position: absolute;
+    content: '.';
+    font-size: 5px;
+    line-height: 0;
+    height: 0;
+}
+.vue-browserlike-window__hendle {
+    color: #ddd;
+    font-weight: bold;
+    display: block;
+    width: 5px;
+    height: 70%;
+    padding: 5px 5px 0 5px;
+}
+.vue-browserlike-window__hendle span {
+    display: block;
+    height: 33.333%;
+    position: relative;
+}
+.vue-browserlike-window__hendle span:nth-child(1):after {
+    top: 0;
+    left: 0;
+}
+.vue-browserlike-window__hendle span:nth-child(1):before {
+    top: 0;
+    right: 0;
+}
+.vue-browserlike-window__hendle span:nth-child(2):after {
+    top: 0;
+    left: 0;
+}
+.vue-browserlike-window__hendle span:nth-child(2):before {
+    top: 0;
+    right: 0;
+}
+.vue-browserlike-window__hendle span:nth-child(3):after {
+    top: 0;
+    left: 0;
+}
+.vue-browserlike-window__hendle span:nth-child(3):before {
+    top: 0;
+    right: 0;
+}
+.vue-browserlike-window__tab_name {
+    width: calc(100% - 5px);
+    overflow: hidden;
+}
+/* drawer */
+.vue-browserlike-window__drower_button {
+    position: absolute;
+    display: block;
+    z-index: 300;
+    border: none;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    padding: 0;
+    right: 0;
+    top: 0;
+}
+.vue-browserlike-window__drower_button:hover {
+    background: #ddd;
+}
+.vue-browserlike-window__drower_button:focus {
+    outline: 0;
+}
+.vue-browserlike-window__drower_button span {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.1s linear;
+}
+.vue-browserlike-window__drawer {
+    position: absolute;
+    display: block;
+    z-index: 301;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    width: 100px;
+    right: 0;
+    top: 40px;
+    padding: 5px;
+    background: #fff;
+}
+.vue-browserlike-window__drawer li {
+    overflow: hidden;
+}
+.vue-browserlike-window__drawer li:hover {
+    background: #eee;
+    cursor: pointer;
+}
+/* control button */
+.vue-browserlike-window__control_buttons {
+    margin-left: auto;
+}
+.vue-browserlike-window__control_buttons button {
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    width: 40px;
+    height: 25px;
+    line-height: 35px;
+    cursor: pointer;
+    background-color: $green-dark;
+}
+
+.vue-browserlike-window__control_buttons button:focus {
+    outline: 0;
+}
+.vue-browserlike-window__control_buttons button.vue-browserlike-window__close:hover {
+    background: #f54444;
+}
+.vue-browserlike-window__control_buttons button.vue-browserlike-window__close {
+    color: $font-light;
+    font-size: 1em;
+    line-height: normal;
+}
+
+.vue-browserlike-window__control_buttons button.vue-browserlike-window__small:hover {
+    background: #fdb525;
+}
+.vue-browserlike-window__control_buttons button.vue-browserlike-window__small:after {
+    content: '';
+    display: block;
+    width: 70%;
+    height: 1px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255);
+}
+
+/* top, under */
+.vue-browserlike-window__top_bar,
+.vue-browserlike-window__under_bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5px;
+    margin: 0 auto;
+    cursor: row-resize;
+}
+.vue-browserlike-window__top_bar {
+    top: -5px;
+}
+.vue-browserlike-window__top_bar:hover {
+    top: -100px;
+    height: 200px;
+}
+.vue-browserlike-window__top_bar {
+    bottom: 0;
+}
+.vue-browserlike-window__under_bar:hover {
+    height: 200px;
+    bottom: -100px;
+}
+/* left, right */
+.vue-browserlike-window__left_bar,
+.vue-browserlike-window__right_bar {
+    position: absolute;
+    top: 0;
+    width: 5px;
+    cursor: col-resize;
+}
+.vue-browserlike-window__left_bar {
+    left: -5px;
+}
+.vue-browserlike-window__right_bar {
+    right: -5px;
+}
+.vue-browserlike-window__left_bar:hover {
+    width: 200px;
+    left: -100px;
+}
+.vue-browserlike-window__right_bar:hover {
+    width: 200px;
+    right: -100px;
+}
+/* corner */
+.vue-browserlike-window__corner_ne,
+.vue-browserlike-window__corner_nw,
+.vue-browserlike-window__corner_se,
+.vue-browserlike-window__corner_sw {
+    position: absolute;
+    z-index: 200;
+    width: 5px;
+    height: 5px;
+}
+.vue-browserlike-window__corner_nw:hover,
+.vue-browserlike-window__corner_ne:hover,
+.vue-browserlike-window__corner_se:hover,
+.vue-browserlike-window__corner_sw:hover {
+    height: 200px;
+    width: 200px;
+}
+.vue-browserlike-window__corner_nw {
+    top: -5px;
+    left: -5px;
+    cursor: nw-resize;
+}
+.vue-browserlike-window__corner_nw:hover {
+    left: -100px;
+    top: -100px;
+    height: 200px;
+    width: 200px;
+}
+.vue-browserlike-window__corner_ne {
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+.vue-browserlike-window__corner_ne:hover {
+    right: -100px;
+    top: -100px;
+    height: 200px;
+    width: 200px;
+}
+.vue-browserlike-window__corner_sw {
+    bottom: -5px;
+    left: -5px;
+    cursor: sw-resize;
+}
+.vue-browserlike-window__corner_se {
+    bottom: -5px;
+    right: -5px;
+    cursor: se-resize;
+}
+.vue-browserlike-window__corner_sw:hover {
+    bottom: -100px;
+    left: -100px;
+}
+.vue-browserlike-window__corner_se:hover {
+    bottom: -100px;
+    right: -100px;
+}
+
+.vue-browserlike-window__navi_bar_title {
+    color: $font-light;
+    font-size: 1em;
+    line-height: 40px;
+    padding-left: 20px;
+}
